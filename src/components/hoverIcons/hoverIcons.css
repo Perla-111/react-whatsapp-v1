@@ -1,0 +1,15 @@
+.details{
+    background : rgb(241, 237, 237);
+    border-radius : 25px;
+    position : fixed;
+    text-align: center;
+    right : 2.3rem;
+    bottom : 6rem;
+}
+.contacts{
+    background: #25D366;
+    border-radius: 25px;
+    position : fixed;
+    right : 2rem;
+    bottom : 2rem;
+}

@@ -1,0 +1,45 @@
+
+.body1{
+    display: flex;
+    height: 83.33vh;
+    overflow-y: scroll;
+}
+.body1 .chat-tiles{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.body1 .chat-tiles .tile{
+    display : flex;
+    flex-direction : row;
+    max-height : 72px;
+    align-items: center;
+    padding : 15px;
+}
+.body1 .chat-tiles .tile .dp{
+    border-radius: 25px;
+}
+.body1 .chat-tiles .tile .content{
+    display: flex;
+    flex-direction : column;
+    padding : 15px 0px 15px 15px;
+    width : 100%;
+}
+.body1 .chat-tiles .tile .content .topp{
+    display: flex;
+    justify-content: space-between;
+}
+.body1 .chat-tiles .tile .content .topp .topp1{
+    font-weight : bold;
+}
+.topp2{
+    color: grey;
+    font-size : 15px;
+}
+.body1 .chat-tiles .tile .content .bott{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+

@@ -1,0 +1,129 @@
+.chat-body{
+    display: flex;
+    flex-direction : column;
+    height: 78.86056vh;
+    overflow-y: scroll;
+    padding: 15px 15px 0 15px;
+}
+.chat-body .chat-message{
+    position : relative;
+    margin-right: auto;
+    font-weight:500;
+    font-size : 18px;
+    word-wrap: break-word;
+    padding : 10px;
+    padding-bottom: 20px;
+    padding-right: 75px;
+    max-width : 300px;
+    border-radius: 10px;
+    border-top-left-radius: 0px;
+    background-color: white;
+    margin-bottom : 10px;
+}
+.chat-body .chat-message .bubble-received{
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-right: 8px solid white;
+    border-left: 8px solid transparent;
+    border-top: 8px solid white;
+    border-bottom: 8px solid transparent;
+    left: -15px;
+    top: 0px;
+}
+.chat-body .chat-message-repeat{
+    position : relative;
+    font-weight:500;
+    font-size : 18px;
+    padding : 10px;
+    word-wrap: break-word;
+    padding-bottom: 20px;
+    min-width: 100px;
+    max-width : 300px;
+    border-radius: 10px;
+    background-color: white;
+    margin-bottom : 10px;
+}
+.chat-body .chat-timestamp-r{
+    margin-left : 10px;
+    bottom : 3px;
+    position: absolute;
+    color: gray;
+    font-size: small;
+}
+.chat-body .chat-message-sent{
+    margin-left : auto;
+    font-weight:500;
+    font-size : 18px;
+    padding : 10px;
+    padding-bottom: 20px;
+    position :relative;
+    word-wrap: break-word;
+    min-width: 100px;
+    max-width : 300px;
+    border-radius: 10px;
+    border-top-right-radius: 0px;
+    background-color: lightgreen;
+    margin-bottom : 10px;
+}
+.chat-body .chat-message-sent .bubble-sent{
+        content: "";
+        width: 0px;
+        height: 0px;
+        position: absolute;
+        border-left: 8px solid lightgreen;
+        border-right: 8px solid transparent;
+        border-top: 8px solid lightgreen;
+        border-bottom: 8px solid transparent;
+        right: -15px;
+        top: 0px;
+}
+.chat-body .chat-message-sent-repeat{
+    position : relative;
+    margin-left:auto;
+    font-weight:500;
+    font-size : 18px;
+    word-wrap: break-word;
+    padding : 10px;
+    padding-bottom: 20px;
+    min-width: 100px;
+    max-width : 300px;
+    border-radius: 10px;
+    background-color: lightgreen;
+    margin-bottom : 10px;
+}
+.chat-body .chat-timestamp-s{
+    right : 15px;
+    bottom : 3px;
+    position: absolute;
+    color: gray;
+    font-size: small;
+}
+
+.input-actions {
+    display: flex;
+    flex-direction : row;
+    width : 100%;
+    justify-content : space-between;
+    align-items : center;
+}
+.input-actions .left{
+    display: flex;
+    flex-direction : row;
+    flex:1;
+    justify-content : space-between;
+    border-radius : 30px;
+    background-color: white;
+}
+.input-actions .left .msg >input{
+    padding : 10px 0px 10px 0px;
+    border : none;
+    outline-width : 0;
+}
+.input-actions .right{
+    display: flex;
+    flex-direction : row;
+    background-color: #128C7E;
+    border-radius : 30px;
+}

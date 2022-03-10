@@ -1,0 +1,50 @@
+.startpage-2{
+    height : 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.startpage-2 .top {
+    display: flex;
+    flex-direction : column;
+    align-items : center;
+    justify-content : space-between;
+    height: 85vh;
+}
+.startpage-2 .top h1{
+    color : #128C7E;
+    padding-top : 3rem;
+}
+.startpage-2 .top .agreement{
+    width : 80%;
+    text-align: center;
+}
+.startpage-2 .top .agreement button{
+    font-weight: 600;
+    background-color: #25D366;
+    border: none;
+    border-radius: 3px;
+    padding : 5px 30px 5px 30px;
+    color : white;
+}
+.startpage-2 .top .agreement .links{
+color: dodgerblue;
+font-weight: 500;
+}
+
+.startpage-2 .footers{
+    position : fixed;
+    bottom : 1rem;
+    width: 100%;
+    text-align : center;
+
+}
+.startpage-2 .footer1{
+    font-size: small;
+    color : grey;
+}
+.startpage-2 .footer2{
+    font-size : 16px;
+    letter-spacing: 2px;
+    color : #25D366;
+}

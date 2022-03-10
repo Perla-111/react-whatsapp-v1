@@ -1,0 +1,42 @@
+.header1 {
+    background: #128C7E;
+    height: 16.66vh;
+}
+
+.header1 .header_title{
+display: flex;
+justify-content :space-between;
+color : white;
+padding:15px;
+font-weight : 600;
+}
+.header1 .header_title .one{
+    padding-right:15px;
+    color: white;
+}
+
+
+
+.header1 .header_menu{
+    color:white;
+    padding : 0.5rem;
+    background: #128C7E;
+    /*background: #075e54;   dark green sample color*/
+    display: flex;
+    flex-direction : row;
+    width: 100%;
+}
+
+.header1 .header_menu .camera{
+    width: 5%;
+    display: flex;
+    justify-content : center;
+}
+
+.header1 .header_menu .spread{
+width: 95%;
+display: flex;
+justify-content: space-around;
+font-weight : bold;
+}
+
