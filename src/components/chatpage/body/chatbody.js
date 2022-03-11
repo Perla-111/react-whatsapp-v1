@@ -10,21 +10,40 @@ import {useEffect, useState, useRef} from 'react';
 import cx from 'classnames';
 import testData from "../../../data/sample/testData";
 
+import fireDb from '../../../firebase';
+
 var sent = true;
 var received = true;
 var rCount=0,sCount=0;
+
+//
+const initialState = {
+    name : '1',
+    email : '1'
+}
+//
 
 const ChatBody = (props) => {
 
     const [text, setText] = useState('');
     const [data,setData] = useState([]);
 
+    //
+    const [fdata, setFdata] = useState(initialState);
+    //
     //const { data2 } = props.location;
 
     //console.log(props);
 
     useEffect(()=>{
         setData(testData.c2);
+        setFdata(initialState);
+        console.log(fdata);
+        fireDb.child("checking").push(fdata, (err)=>{
+            if (err){
+                console.log(err);
+            }
+        })
     },[]);
 
     const messagesEndRef = useRef(null);
