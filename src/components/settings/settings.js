@@ -40,42 +40,42 @@ const Settings = (props) =>{
             <label className='body'>
                     <label style={{paddingLeft:'20px'}}><VpnKeyIcon style={{fontSize:'30px',color:'grey'}} /></label>
                 <label className='bodyName'>
-                    <label style={{fontSize:'20px',fontWeight:'bold'}}>Name here</label>
-                <label>Hey there! I am using WhatsApp</label>
+                    <label style={{fontSize:'20px',fontWeight:'bold'}}>Account</label>
+                <label>Privacy, security, change number</label>
                 </label>
                 </label>
                 <label className='body'>
                     <label style={{paddingLeft:'20px'}}><ChatIcon style={{fontSize:'30px',color:'grey'}} /></label>
                 <label className='bodyName'>
-                    <label style={{fontSize:'20px',fontWeight:'bold'}}>Name here</label>
-                <label>Hey there! I am using WhatsApp</label>
+                    <label style={{fontSize:'20px',fontWeight:'bold'}}>Chats</label>
+                <label>Theme, wallpapers, chat history</label>
                 </label>
                 </label>
                 <label className='body'>
                     <label style={{paddingLeft:'20px'}}><NotificationsIcon style={{fontSize:'30px',color:'grey'}} /></label>
                 <label className='bodyName'>
-                    <label style={{fontSize:'20px',fontWeight:'bold'}}>Name here</label>
-                <label>Hey there! I am using WhatsApp</label>
+                    <label style={{fontSize:'20px',fontWeight:'bold'}}>Notifications</label>
+                <label>Message, group & call tones</label>
                 </label>
                 </label>
                 <label className='body'>
                     <label style={{paddingLeft:'20px'}}><DataUsageIcon style={{fontSize:'30px',color:'grey'}} /></label>
                 <label className='bodyName'>
-                    <label style={{fontSize:'20px',fontWeight:'bold'}}>Name here</label>
-                <label>Hey there! I am using WhatsApp</label>
+                    <label style={{fontSize:'20px',fontWeight:'bold'}}>Storage and data</label>
+                <label>Network usage, auto-download</label>
                 </label>
                 </label>
                 <label className='body'>
                     <label style={{paddingLeft:'20px'}}><HelpOutlineIcon style={{fontSize:'30px',color:'grey'}} /></label>
                 <label className='bodyName'>
-                    <label style={{fontSize:'20px',fontWeight:'bold'}}>Name here</label>
-                <label>Hey there! I am using WhatsApp</label>
+                    <label style={{fontSize:'20px',fontWeight:'bold'}}>Help</label>
+                <label>Help centre, contact us, privacy policy</label>
                 </label>
                 </label>
                 <label className='body'>
                     <label style={{paddingLeft:'20px'}}><SupervisorAccountIcon style={{fontSize:'30px',color:'grey'}} /></label>
                 <label className='bodyName'>
-                    <label style={{fontSize:'20px',fontWeight:'bold'}}>Name here</label>
+                    <label style={{fontSize:'20px',fontWeight:'bold'}}>Invite a friend</label>
                 </label>
                 </label>
             </div>
