@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 
 import chatsData from '../../../data/sample/chatsData';
 
+
 const ChatTiles = (props) => {
     const [chatData, setChatData] = useState([]);
 

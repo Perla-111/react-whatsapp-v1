@@ -8,6 +8,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
+import {useState} from 'react';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -33,7 +34,16 @@ const useStyles = makeStyles((theme) => ({
 const PhoneDetailsPage = (props) => {
 
     const classes = useStyles();
+
+    const [phoneNumber,setPhoneNumber] = useState();
     
+    const verifyPhoneNumber = () =>{
+      if(phoneNumber.length===10)
+      props.history.push('/verifyotp')
+      else
+      alert('enter valid number');
+    }
+
     return (
         <div className="phone-details">
             <div className="top">
@@ -89,7 +99,7 @@ const PhoneDetailsPage = (props) => {
         inputProps = {{
         style :{textAlign : 'center'}
       }}
-        onChange={(e)=>{console.log(e.target.value)}}
+        onChange={(e)=>{setPhoneNumber(e.target.value)}}
         
       />
       </div>
@@ -100,7 +110,7 @@ const PhoneDetailsPage = (props) => {
                 </div>
             </div>
             <div className="bottom">
-                <button onClick={()=>{props.history.push('/verifyotp')}} >NEXT</button>
+                <button onClick={verifyPhoneNumber} >NEXT</button>
             </div>
         </div>
     );

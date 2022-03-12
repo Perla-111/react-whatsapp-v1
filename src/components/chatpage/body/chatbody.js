@@ -10,7 +10,7 @@ import {useEffect, useState, useRef} from 'react';
 import cx from 'classnames';
 import testData from "../../../data/sample/testData";
 
-import fireDb from '../../../firebase';
+//import fireDb from '../../../firebase';
 
 var sent = true;
 var received = true;
@@ -39,12 +39,13 @@ const ChatBody = (props) => {
         setData(testData.c2);
         setFdata(initialState);
         console.log(fdata);
-        fireDb.child("checking").push(fdata, (err)=>{
+        /*fireDb.child("checking").push(fdata, (err)=>{
             if (err){
                 console.log(err);
             }
-        })
-    },[]);
+        })*/
+    },[fdata]);
+
 
     const messagesEndRef = useRef(null);
 

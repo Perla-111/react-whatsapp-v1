@@ -1,0 +1,42 @@
+.settingsPage{
+    min-height : 90vh;
+    display: flex;
+    flex-direction : column
+}
+.settingsPage .settingsHeader{
+background: green;
+}
+.settingsPage .settingsHeader .backIcon{
+padding-right: 1rem;
+}
+
+.settingsPage .settingsProfile{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.settingsPage .settingsBody{
+    display: flex;
+    flex-direction: column;
+}
+
+.settingsPage .settingsBody .bodycontent{
+display: flex;
+flex-direction: row;
+}
+
+.settingsPage .settingsFooter{
+    position : fixed;
+    bottom : 5px;
+    width: 100%;
+    text-align : center;
+}
+
+.footerheader{
+    margin-bottom: 0px;
+}
+.settingsPage .settingsFooter .footerBrand{
+font-weight :bolder;
+padding: 0px;
+margin-top: 0px;
+}

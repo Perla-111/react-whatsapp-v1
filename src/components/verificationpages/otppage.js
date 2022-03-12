@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 
 import SmsIcon from '@material-ui/icons/Sms';
 import CallIcon from '@material-ui/icons/Call';
+import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
    
@@ -24,6 +25,18 @@ const OtpPage = (props) => {
 
     const classes = useStyles();
 
+    const [otp,setOtp] = useState();
+
+    function checkOtp(){
+        console.log(otp);
+        if(otp==='123456') {
+            props.history.push('/home');
+        }
+        else{
+        alert('enter correct otp');
+        }
+    }
+
     return (
         <div className="otp-page">
             <div className="top">
@@ -39,7 +52,7 @@ const OtpPage = (props) => {
         helperText="Enter 6-digit code"
         inputProps={{style: { textAlign: 'center',
         fontSize : '18px', letterSpacing : '3px' }}} 
-        onChange={(e)=>{console.log(e.target.value)}}
+        onChange={(e)=>{setOtp(e.target.value)}}
         FormHelperTextProps={{
             style: {
               textAlign: 'center',
@@ -55,7 +68,7 @@ const OtpPage = (props) => {
                 </div>
             </div>
             <div className="bottom">
-                <button onClick={()=>{props.history.push('/')}}>NEXT</button>
+                <button onClick={checkOtp}>NEXT</button>
             </div>
         </div>
     );

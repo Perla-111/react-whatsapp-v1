@@ -40,3 +40,17 @@ justify-content: space-around;
 font-weight : bold;
 }
 
+.settingPopup .modal-content{
+    height: fit-content;
+    width: fit-content;
+    position: fixed;
+    right: 8px;
+}
+.popupbody{
+    padding: 0px 10px 0px 10px !important;
+}
+.popupbody .options{
+    display: flex;
+    flex-direction: column;
+    font-size: 22px;
+}

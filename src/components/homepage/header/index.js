@@ -2,8 +2,21 @@ import './index.css';
 
 import { withRouter } from 'react-router-dom';
 
+import {Modal} from 'react-bootstrap';
+import { useState } from 'react';
+
 
 const Header = (props) => {
+
+    const [settingPopup,setSettingPopup] = useState(false);
+
+    function CloseSettingPopup(){
+        setSettingPopup(false);
+    }
+    function OpenSettingPopup(){
+        setSettingPopup(true);
+    }
+
     return (
         <div className="header1" >
 
@@ -11,10 +24,23 @@ const Header = (props) => {
             <label  >WhatsApp</label>
             <label >
             <i className="bi bi-search one"></i>
-            <i className="bi bi-three-dots-vertical"></i>
+            <i className="bi bi-three-dots-vertical" onClick={OpenSettingPopup}></i>
             </label>                        
         </div>
-
+<div className='setting'>
+<Modal className='settingPopup'  animation={false} show={settingPopup} onHide={CloseSettingPopup} >
+<Modal.Body className='popupbody'>
+    <div className='options'>
+        <label>New group</label>
+        <label>New broadcast</label>
+        <label>Linked devices</label>
+        <label>Starred messages</label>
+        <label>Payments</label>
+        <label onClick={()=>{props.history.push('/settings')}}>Settings</label>
+    </div>
+</Modal.Body>
+</Modal>
+</div>
 
         <div className="header_menu">  
             <div className="camera" >

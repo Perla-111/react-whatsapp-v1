@@ -2,10 +2,20 @@ import './startpage.css';
 import {withRouter} from 'react-router-dom';
 import dp2 from '../../data/dp/start1.png';
 import StartPage2 from './startpage2';
+import { useEffect, useState } from 'react';
 
 const StartPage = (props) => {
+
+    const [brandPage,setBrandPage] = useState(true);
+
+    useEffect(()=>{
+        setTimeout(() => {
+            setBrandPage(false);
+        }, 2000);
+    },[])
+
     return (
-        <div>{true?
+        <div>{brandPage?
         <div className="startPages" >
             <img onClick={()=>{props.history.push('/home')}}
             height='250px' width='250px' 
