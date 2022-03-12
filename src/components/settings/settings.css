@@ -4,7 +4,10 @@
     flex-direction : column
 }
 .settingsPage .settingsHeader{
-background: green;
+background: #128C7E;
+display : flex;
+flex-direction : row;
+align-items: center;
 }
 .settingsPage .settingsHeader .backIcon{
 padding-right: 1rem;
@@ -14,10 +17,35 @@ padding-right: 1rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    padding-right: 5px;
+}
+.settingsPage .settingsProfile .settingsStatus{
+    display : flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: -1.5rem;
+}
+.settingsPage .settingsProfile .settingsStatus .settingsStatusName{
+    display : flex;
+    flex-direction: column;
+    padding : 10px;
 }
 .settingsPage .settingsBody{
     display: flex;
     flex-direction: column;
+    padding-right: 5px;
+}
+.settingsPage .settingsBody .body{
+    display : flex;
+    flex-direction: row;
+    align-items: center;
+    margin: -0.8rem 0px -0.8rem 0px;
+}
+.settingsPage .settingsBody .body .bodyName{
+    display : flex;
+    flex-direction: column;
+    padding : 10px 10px 10px 30px;
 }
 
 .settingsPage .settingsBody .bodycontent{
@@ -34,6 +62,7 @@ flex-direction: row;
 
 .footerheader{
     margin-bottom: 0px;
+    color: grey;
 }
 .settingsPage .settingsFooter .footerBrand{
 font-weight :bolder;
