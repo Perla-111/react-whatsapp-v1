@@ -47,12 +47,12 @@ padding-right: 1rem;
     flex-direction: column;
     padding : 10px 10px 10px 30px;
 }
-
+/*
 .settingsPage .settingsBody .bodycontent{
 display: flex;
 flex-direction: row;
 }
-
+*/
 .settingsPage .settingsFooter{
     position : fixed;
     bottom : 5px;

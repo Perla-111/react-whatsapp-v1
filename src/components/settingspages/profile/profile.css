@@ -1,0 +1,47 @@
+.profile{
+    min-height : 90vh;
+    display: flex;
+    flex-direction : column
+}
+
+.profile .profileHeader{
+    background: #128C7E;
+    display : flex;
+    flex-direction : row;
+    align-items: center;
+    }
+.profile .profileHeader .backIcon{
+    padding-right: 1rem;
+}
+
+.profile .dp{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profile .dp .dpCameraIcon{
+    position : absolute;
+    top : 10rem;
+    left : 13rem;
+    background: #128C7E;
+    border-radius: 25px;
+}
+
+.profile .body{
+    display : flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem 1rem -0.8rem 0px;
+}
+
+.profile .body .bodyContent{
+    display : flex;
+    flex-direction: row;
+    align-items : center;
+}
+.profile .body  .bodyName{
+    display : flex;
+    flex-direction: column;
+    padding :10px 0px 0px 30px;
+}

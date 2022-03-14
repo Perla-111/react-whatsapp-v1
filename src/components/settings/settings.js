@@ -25,7 +25,7 @@ const Settings = (props) =>{
                 <label style={{color:'white',fontWeight:'600',fontSize:'22px'}}>Settings</label>
             </div>
             <div className='settingsProfile'>
-                <label className='settingsStatus'>
+                <label className='settingsStatus' onClick={()=>{props.history.push('/profile')}}>
                     <label><AccountCircleIcon style={{fontSize:'80px',color:'lightgrey'}} /></label>
                 <label className='settingsStatusName'>
                     <label style={{fontSize:'20px',fontWeight:'bold'}}>Name here</label>

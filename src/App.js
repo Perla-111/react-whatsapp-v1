@@ -1,7 +1,8 @@
 import './App.css';
-import {HashRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import HomePage from './components/homepage/homepage';
 import Settings from './components/settings/settings';
+import Profile from './components/settingspages/profile/profile';
 import ChatPage from './components/chatpage/chatpage';
 import StartPage from './components/startpage/startpage';
 import CallPage from './components/callpage';
@@ -19,6 +20,7 @@ function App() {
         <Route path='/call' component={CallPage} ></Route>
         <Route path='/verify' component={PhoneDetails} ></Route>
         <Route path="/verifyotp" component={OtpPage} />
+        <Route path='/profile' component={Profile} ></Route>
         <Route exact path='/'  ><StartPage/></Route>
         </Switch>
       </Router>
