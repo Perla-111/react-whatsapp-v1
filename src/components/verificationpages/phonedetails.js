@@ -10,6 +10,11 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 
 import {useState} from 'react';
 
+import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
+
+import * as stateActions from '../../actions/stateActions';
+
 
 const useStyles = makeStyles((theme) => ({
   textField: {
@@ -38,11 +43,24 @@ const PhoneDetailsPage = (props) => {
     const [phoneNumber,setPhoneNumber] = useState();
     
     const verifyPhoneNumber = () =>{
-      if(phoneNumber.length===10)
-      props.history.push('/verifyotp')
+      if(phoneNumber.length===10){
+        props.actions.checkNumber(phoneNumber);
+        //var pendingOtp = setTimeout(()=>{
+          props.history.push('/verifyotp');
+        //},1000);
+        //clearTimeout(pendingOtp);
+      
+      console.log(phoneNumber);
+      }
       else
       alert('enter valid number');
     }
+
+    function enterPressed(e){
+      if(e.key === 'Enter'){
+          verifyPhoneNumber();
+      }
+  }
 
     return (
         <div className="phone-details">
@@ -100,7 +118,7 @@ const PhoneDetailsPage = (props) => {
         style :{textAlign : 'center'}
       }}
         onChange={(e)=>{setPhoneNumber(e.target.value)}}
-        
+        onKeyDown={enterPressed}
       />
       </div>
       
@@ -115,4 +133,18 @@ const PhoneDetailsPage = (props) => {
         </div>
     );
 }
-export default withRouter(PhoneDetailsPage);
+
+function mapStateToProps(state,ownProps){
+  return {
+    mystate : state
+  };
+}
+ 
+function mapDispatchToProps(dispatch){
+  return {
+    actions : bindActionCreators(stateActions,dispatch)/*,
+    actions1: bindActionCreators(checkActions,dispatch)*/
+  };
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(PhoneDetailsPage));

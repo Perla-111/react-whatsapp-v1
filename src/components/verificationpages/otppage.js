@@ -9,6 +9,11 @@ import SmsIcon from '@material-ui/icons/Sms';
 import CallIcon from '@material-ui/icons/Call';
 import { useState } from 'react';
 
+import { connect } from 'react-redux';
+//import {bindActionCreators} from 'redux';
+
+//import * as stateActions from '../../actions/stateActions';
+
 const useStyles = makeStyles((theme) => ({
    
     textField2: {
@@ -29,11 +34,17 @@ const OtpPage = (props) => {
 
     function checkOtp(){
         console.log(otp);
-        if(otp==='123456') {
+        if(otp==='123456'&&props.mystate.states.enteredPhoneNumber==='1234567890') {
             props.history.push('/home');
         }
         else{
+            console.log(props.mystate.states.enteredPhoneNumber)
         alert('enter correct otp');
+        }
+    }
+    function enterPressed(e){
+        if(e.key === 'Enter'){
+            checkOtp();
         }
     }
 
@@ -59,6 +70,7 @@ const OtpPage = (props) => {
               fontSize : '16px'
             }
           }}
+          onKeyDown={enterPressed}
       />
                 </div>
                 <div className="inform-message">
@@ -73,4 +85,18 @@ const OtpPage = (props) => {
         </div>
     );
 }
-export default withRouter(OtpPage);
+
+function mapStateToProps(state,ownProps){
+    return {
+      mystate : state
+    };
+  }
+   /*
+  function mapDispatchToProps(dispatch){
+    return {
+      actions : bindActionCreators(stateActions,dispatch)/*,
+      actions1: bindActionCreators(checkActions,dispatch)
+    };
+  }
+  */
+  export default connect(mapStateToProps,)(withRouter(OtpPage));

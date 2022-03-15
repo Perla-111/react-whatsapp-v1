@@ -22,7 +22,7 @@
 .profile .dp .dpCameraIcon{
     position : absolute;
     top : 25%;
-    left : 50%;
+    left : 55%;
     background: #128C7E;
     border-radius: 25px;
 }
@@ -46,7 +46,7 @@
     padding :10px 0px 0px 30px;
 }
 
-@media screen and (min-height : 450px){
+@media screen and (min-width : 450px){
     .profile .dp .dpCameraIcon{
         position : absolute;
         top : 24%;

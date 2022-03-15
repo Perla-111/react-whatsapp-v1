@@ -33,13 +33,15 @@ class Profile extends React.Component {
                 </div>
 
                 <div className='dp'>
-                    <label className='dpIcon'><AccountCircleIcon style={{ fontSize: '160px', color: 'lightgrey' }} /></label>
-
-                    <label className='dpCameraIcon'>
+                    <label className='dpIcon'><AccountCircleIcon style={{ fontSize: '160px', color: 'lightgrey' }} />
+                    <span className='dpCameraIcon'>
                         <IconButton>
                             <CameraAltIcon style={{ color: 'white' }} />
                         </IconButton>
+                    </span>
                     </label>
+
+                    
 
                 </div>
 

@@ -1,9 +1,13 @@
 import { withRouter } from 'react-router';
 import './startpage2.css';
 
+import { connect } from 'react-redux';
+//import {bindActionCreators} from 'redux';
+
 import start2 from '../../data/dp/start2.png';
 
 const StartPage2 = (props) => {
+    console.log(props.mystate.states);
     return (
         <div className="startpage-2">
             <div className="top">
@@ -31,4 +35,18 @@ const StartPage2 = (props) => {
         </div>
     );
 }
-export default withRouter(StartPage2);
+
+function mapStateToProps(state,ownProps){
+    return {
+      mystate : state
+    };
+  }
+ /* 
+  function mapDispatchToProps(dispatch){
+    return {
+      actions : bindActionCreators(productActions,dispatch),
+      actions1: bindActionCreators(checkActions,dispatch)
+    };
+  }
+  */
+  export default connect(mapStateToProps,)(withRouter(StartPage2));

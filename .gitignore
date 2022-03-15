@@ -2,9 +2,7 @@
 
 # dependencies
 /node_modules/*
-!/node_modules/react-redux
-!/node_modules/redux
-!/node_modules/redux-thunk
+!/node_modules/axios
 /.pnp
 .pnp.js
 
