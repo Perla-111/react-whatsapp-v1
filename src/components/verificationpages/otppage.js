@@ -10,9 +10,9 @@ import CallIcon from '@material-ui/icons/Call';
 import { useState } from 'react';
 
 import { connect } from 'react-redux';
-//import {bindActionCreators} from 'redux';
+import {bindActionCreators} from 'redux';
 
-//import * as stateActions from '../../actions/stateActions';
+import * as stateActions from '../../actions/stateActions';
 
 const useStyles = makeStyles((theme) => ({
    
@@ -35,10 +35,10 @@ const OtpPage = (props) => {
     function checkOtp(){
         console.log(otp);
         if(otp==='123456'&&props.mystate.states.enteredPhoneNumber==='1234567890') {
+            props.actions.loadLoggedInUserData(props.mystate.states.enteredPhoneNumber);
             props.history.push('/home');
         }
         else{
-            console.log(props.mystate.states.enteredPhoneNumber)
         alert('enter correct otp');
         }
     }
@@ -91,12 +91,12 @@ function mapStateToProps(state,ownProps){
       mystate : state
     };
   }
-   /*
+   
   function mapDispatchToProps(dispatch){
     return {
       actions : bindActionCreators(stateActions,dispatch)/*,
-      actions1: bindActionCreators(checkActions,dispatch)
+      actions1: bindActionCreators(checkActions,dispatch)*/
     };
   }
-  */
-  export default connect(mapStateToProps,)(withRouter(OtpPage));
+  
+  export default connect(mapStateToProps,mapDispatchToProps)(withRouter(OtpPage));

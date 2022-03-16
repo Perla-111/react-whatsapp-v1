@@ -23,6 +23,8 @@ var initialState = {
     tManufacturerCheck:""
   },*/
   search:'search-ok',
-  enteredPhoneNumber : 0
+  enteredPhoneNumber : 0,
+  loggedInUserDetails : {},
+  loggedInUserdata : []
 };
 export default initialState;

@@ -2,34 +2,34 @@ var testData = {
     c1 : [
         {
             msg : "Hii",
-            type : "sent"
+            msgType : "sent"
         },
         {
             msg : "all(group)",
-            type : "sent"
+            msgType : "sent"
         },
         {
             msg : "Hii Perla",
-            type : "received"
+            msgType : "received"
         },
         {
             msg : "checking looks like something phishy",
-            type : "sent"
+            msgType : "sent"
         },
         {
             msg : "I am fine",
-            type : "received"
+            msgType : "received"
         }
     
-    ],
+    ], 
     c2 : [
         {
             msg : "Hii",
-            type : "sent"
+            msgType : "sent"
         },
         {
             msg : "chat2",
-            type : "sent"
+            msgType : "sent"
         }
     
     ]}

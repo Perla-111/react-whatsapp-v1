@@ -14,7 +14,14 @@ import {IconButton} from '@material-ui/core';
 
 import {withRouter} from 'react-router-dom';
 
+import { connect } from 'react-redux';
+//import { useState } from 'react';
+//import {bindActionCreators} from 'redux';
+
+//import * as stateActions from '../../actions/stateActions';
+
 const Settings = (props) =>{
+    const userDetails = props.mystate.states.loggedInUserDetails;
     return(
         <div className='settingsPage'>
             <div className='settingsHeader'>
@@ -28,8 +35,8 @@ const Settings = (props) =>{
                 <label className='settingsStatus' onClick={()=>{props.history.push('/profile')}}>
                     <label><AccountCircleIcon style={{fontSize:'80px',color:'lightgrey'}} /></label>
                 <label className='settingsStatusName'>
-                    <label style={{fontSize:'20px',fontWeight:'bold'}}>Name here</label>
-                <label>Hey there! I am using WhatsApp</label>
+                    <label style={{fontSize:'20px',fontWeight:'bold'}}>{userDetails?userDetails.name:'empty'}</label>
+                <label>{userDetails?userDetails.about:'empty'}</label>
                 </label>
                 </label>
 
@@ -86,4 +93,18 @@ const Settings = (props) =>{
         </div>
     );
 }
-export default withRouter(Settings)
+
+function mapStateToProps(state,ownProps){
+    return {
+      mystate : state
+    };
+  }
+  /* 
+  function mapDispatchToProps(dispatch){
+    return {
+      actions : bindActionCreators(stateActions,dispatch)/*,
+      actions1: bindActionCreators(checkActions,dispatch)
+    };
+  }
+  */
+  export default connect(mapStateToProps,)(withRouter(Settings));

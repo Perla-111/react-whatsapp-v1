@@ -27,12 +27,27 @@ export default function stateReducer(state = initialState,action){
         console.log(number);
         let checkNumberState;
         if(number){
-        checkNumberState = {...state,enteredPhoneNumber:number};
+        checkNumberState = {...state,enteredPhoneNumber:number,loggedInUserDetails:action.user[0]};
         }
         else
         checkNumberState = state;
         console.log(checkNumberState);
         return checkNumberState;
+
+        case types.LOAD_LOGGEDIN_USER_DATA_SUCCESS :
+        //console.log(action.data);
+        let checkLoggedInUserData = action.data[0];
+        console.log(action.data);
+        let loggedInUserDataState;
+
+        if(checkLoggedInUserData){
+          loggedInUserDataState = {...state,loggedInUserdata:action.data[0]};
+        }
+        else
+        loggedInUserDataState = state;
+        
+        console.log(loggedInUserDataState);
+        return loggedInUserDataState;
 
       default :
       return state;

@@ -1,7 +1,6 @@
 import './profile.css';
 
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 
 import { IconButton } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
@@ -11,6 +10,14 @@ import PersonIcon from '@material-ui/icons/Person';
 import EditIcon from '@material-ui/icons/Edit';
 import CallIcon from '@material-ui/icons/Call';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
+
+import {withRouter} from 'react-router-dom';
+
+import { connect } from 'react-redux';
+//import { useState } from 'react';
+//import {bindActionCreators} from 'redux';
+
+//import * as stateActions from '../../actions/stateActions';
 
 class Profile extends React.Component {
     constructor(props) {
@@ -22,6 +29,8 @@ class Profile extends React.Component {
         }
     }
     render() {
+        const userDetails = this.props.mystate.states.loggedInUserDetails;
+
         return (
             <div className='profile'>
                 <div className='profileHeader'>
@@ -52,7 +61,7 @@ class Profile extends React.Component {
                         <label style={{ fontSize: '18px',color:'grey',margin:'0px' }}>
                             Name</label>
                         <label style={{ fontSize: '20px', fontWeight: '500' }}>
-                            Name here</label>
+                        {userDetails?userDetails.name:'empty'}</label>
                     </label>
                     </div>
                     <label><EditIcon style={{ fontSize: '25px', color: '#128C7E' }} /></label>
@@ -77,7 +86,7 @@ class Profile extends React.Component {
                         <label style={{ fontSize: '18px',color:'grey',margin:'0px' }}>
                             About</label>
                         <label style={{ fontSize: '18px'}}>
-                            Hey there !! I am using WhatsApp.</label>
+                        {userDetails?userDetails.about:'empty'}</label>
                     </label>
                     </div>
                     <label><EditIcon style={{ fontSize: '25px', color: '#128C7E' }} /></label>
@@ -90,7 +99,7 @@ class Profile extends React.Component {
                         <label style={{ fontSize: '18px',color:'grey',margin:'0px' }}>
                             Phone</label>
                         <label style={{ fontSize: '20px', fontWeight: '500' }}>
-                            +91 1234567890</label>
+                        {userDetails?userDetails.phoneNumber:'empty'}</label>
                     </label>
                     </div>
                     <label><EditIcon style={{ fontSize: '25px', color: '#128C7E' }} /></label>
@@ -102,4 +111,18 @@ class Profile extends React.Component {
         );
     }
 }
-export default withRouter(Profile);
+
+function mapStateToProps(state,ownProps){
+    return {
+      mystate : state
+    };
+  }
+  /* 
+  function mapDispatchToProps(dispatch){
+    return {
+      actions : bindActionCreators(stateActions,dispatch)/*,
+      actions1: bindActionCreators(checkActions,dispatch)
+    };
+  }
+  */
+  export default connect(mapStateToProps,)(withRouter(Profile));

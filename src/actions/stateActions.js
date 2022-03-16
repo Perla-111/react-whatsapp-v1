@@ -14,6 +14,10 @@ export function admitShowJoineeModal(check){
 export function CheckUserSuccess(user){
   return {type:types.CHECK_PHONE_NUMBER_SUCCESS,user}
 }
+
+export function LoadLoggedInUserDataSuccess(data){
+  return {type:types.LOAD_LOGGEDIN_USER_DATA_SUCCESS,data}
+}
 /*
 export function registerUserSuccess(user){
   return { type:types.REGISTER_USER_SUCCESS,user}
@@ -38,6 +42,14 @@ export function loadUser(){
     return function (dispatch) {
       return UserApi.checkUserNumber(phoneNumber).then(user =>{
         dispatch(CheckUserSuccess(user));
+      }).catch(error => {throw(error);});
+    }
+  }
+
+  export function loadLoggedInUserData(phoneNumber){
+    return function (dispatch) {
+      return UserApi.loadLoggedInUserData(phoneNumber).then(data =>{
+        dispatch(LoadLoggedInUserDataSuccess(data));
       }).catch(error => {throw(error);});
     }
   }

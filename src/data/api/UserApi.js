@@ -29,5 +29,11 @@ else{
         }})
         .then(res => res.data);
     }
+    static loadLoggedInUserData(phoneNumber){
+      return axios.get("http://localhost:4000/data",{params : {
+        phoneNumber : phoneNumber
+      }})
+      .then(res => res.data);
+  }
 }
 
