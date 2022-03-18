@@ -6,60 +6,231 @@ import AttachFileIcon from '@material-ui/icons/AttachFile';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import MicIcon from '@material-ui/icons/Mic';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useReducer, useRef } from 'react';
 import cx from 'classnames';
 //import testData from "../../../data/sample/testData";
 
-//import fireDb from '../../../firebase';
+import fireDb from '../../../firebase';
+
+//import axios from 'axios';
 
 import { withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-//import { useState } from 'react';
-//import {bindActionCreators} from 'redux';
+import { bindActionCreators } from 'redux';
 
-//import * as stateActions from '../../actions/stateActions';
+import * as stateActions from '../../../actions/stateActions';
 
 var sent = true;
 var received = true;
 var rCount = 0, sCount = 0;
 
-//
-/*
-const initialState = {
-    name : '1',
-    email : '1'
-}
-*/
-//
+
+const callReducer = (state, action) => {
+    switch (action.type) {
+        case 'COPY_FROM_PROPS_MYSTATE':
+            //console.log(action.by);
+            return action.by;
+
+        case 'ADD_TO_REDATA':
+            //console.log(action.by);
+            return [...state, action.by];
+
+        default:
+            throw new Error();
+    }
+};
 
 const ChatBody = (props) => {
 
     const [text, setText] = useState('');
-    const [data, setData] = useState([]);
+    //const [data, setData] = useState([]);
+    const [redata, dispatch] = useReducer(callReducer, []);
+    const [allData, setAllData] = useState({});
 
-    //
-    //const [fdata, setFdata] = useState(initialState);
-    //
-    //const { data2 } = props.location;
-
-    //console.log(props);
-    //console.log(props.mystate.states.loggedInUserdata.chats1[0].messages)
+    const [toHitDb, setToHitDb] = useState('true');
 
     useEffect(() => {
-        setData(props.mystate.states.loggedInUserdata.chats1[0].messages);
-        //setData(props.mystate.states.loggedInUserData);
-        //setFdata(initialState);
-        //console.log(fdata);
-        /*
-        fireDb.child("checking").push(fdata, (err)=>{
-            if (err){
-                console.log(err);
-            }
-        })*/
-    }, []);
+        var settimer;
+        //this is in state to stop trigger post db response.data
+        //let count =0;//should not be in state in this demo example
+        let timer1 = setTimeout(() => {
+            console.log('started timeout'); //after 2 secs of comp load
+            settimer = setInterval(() => {                                  // start hitting db
+                console.log('started interval');
+                if (toHitDb === 'true') {   //data was changed by other chat so
+                    console.log('checking trigger db');
+
+                    fireDb.child("triggeredUsers").orderByChild("isTriggered").equalTo('true')
+                    .once("value")//.then(snapshot=>snapshot)
+                    .then(snapshot => {
+
+                        var res = {
+                            data : []
+                        };
+                        console.log(snapshot.val());
+                        if(snapshot.val()!==null){
+                          for(let i=0;i<snapshot.val().length;i++){
+                            if(snapshot.val()[i]!==undefined){
+                              //if(snapshot.val()[i].phoneNumber.toString()===oppositeUserNumber.toString()){
+                                res.data[0] =  snapshot.val()[i];
+                                console.log(res.data);
+                              //}
+                              //else console.log('id not matched')
+                            }
+                            else console.log('not found')
+                          }
+                        }
+
+                        if (res.data.length > 0) {
+                            setToHitDb('false');
+                            console.log(res.data[0].phoneNumber.toString());
+                            console.log(props.mystate.states.loggedInUserdata.phoneNumber.toString());
+                            if(res.data[0].id.toString()===props.mystate.states.loggedInUserdata.id.toString()){
+                            props.actions.loadLoggedInUserData(res.data[0].phoneNumber);
+                            //let path = `http://localhost:4000/triggeredUsers/${res.data[0].id}`;
+                            /*
+                               let res1 = {data : snapshot.val()}
+                                const toPushInFireDb = {
+                                id: res1.data[0].id,
+                                phoneNumber: res1.data[0].phoneNumber,
+                                name: res1.data[0].name,
+                                isTriggered: 'false'
+                            }
+                        */
+                            const toPushInFireDb = {
+                                id: res.data[0].id,
+                                phoneNumber: res.data[0].phoneNumber,
+                                name: res.data[0].name,
+                                isTriggered: 'false'
+                            }
+                            fireDb.child("triggeredUsers").orderByChild("phoneNumber").equalTo(res.data[0].phoneNumber).once("child_added", function(snapshot) {
+                             
+                                snapshot.ref.update(toPushInFireDb);
+                                console.log(snapshot.val());
+                                setToHitDb('true');
+                              });
+
+                              /*
+                            axios.put(path,
+                                {
+                                    id: res.data[0].id,
+                                    phoneNumber: res.data[0].phoneNumber,
+                                    name: res.data[0].name,
+                                    isTriggered: 'false'
+                                }
+                            ).then(res=>{
+                                console.log(res.data);
+                                setToHitDb('true');
+                            })
+                            */
+                        }
+                            else 
+                            setToHitDb('true');
+                        }
+                        else
+                            console.log('none');
+                    })
+/* for json-server with axios
+                    axios.get("http://localhost:4000/triggeredUsers", {
+                        params: {
+                            isTriggered: 'true'
+                        }
+                    })
+                        .then(res => {
+                            if (res.data.length > 0) {
+                                setToHitDb('false');
+                                console.log(res.data[0].phoneNumber.toString());
+                                console.log(props.mystate.states.loggedInUserdata.phoneNumber.toString());
+                                if(res.data[0].id.toString()===props.mystate.states.loggedInUserdata.id.toString()){
+                                props.actions.loadLoggedInUserData(res.data[0].phoneNumber);
+                                let path = `http://localhost:4000/triggeredUsers/${res.data[0].id}`;
+                                /*
+                                   let res1 = {data : snapshot.val()}
+                                    const toPushInFireDb = {
+                                    id: res1.data[0].id,
+                                    phoneNumber: res1.data[0].phoneNumber,
+                                    name: res1.data[0].name,
+                                    isTriggered: 'false'
+                                }
+                            //
+                                const toPushInFireDb = {
+                                    id: res.data[0].id,
+                                    phoneNumber: res.data[0].phoneNumber,
+                                    name: res.data[0].name,
+                                    isTriggered: 'false'
+                                }
+                                fireDb.child("triggeredUsers").orderByChild("phoneNumber").equalTo(res.data[0].phoneNumber).once("child_added", function(snapshot) {
+                                 
+                                    snapshot.ref.update(toPushInFireDb);
+                                    console.log(snapshot.val());
+                                  });
+
+                                  
+                                axios.put(path,
+                                    {
+                                        id: res.data[0].id,
+                                        phoneNumber: res.data[0].phoneNumber,
+                                        name: res.data[0].name,
+                                        isTriggered: 'false'
+                                    }
+                                ).then(res=>{
+                                    console.log(res.data);
+                                    setToHitDb('true');
+                                })}
+                                else 
+                                setToHitDb('true');
+                            }
+                            else
+                                console.log('none');
+                        })
+                        */
+                }
+                else {
+                    console.log('none');
+                }
+            }, 3000);
+        }, 2000);
+
+        // this will clear Timeout
+        // when component unmount like in willComponentUnmount
+        // and show will not change to true
+        return () => {
+            console.log('cleared timeout');
+            clearTimeout(timer1);
+            clearInterval(settimer);
+            //clearTimeout(timer2);
+        };
+    },
+        // useEffect will run only one time with empty []
+        // if you pass a value to array,
+        // like this - [data]
+        // than clearTimeout will run every time
+        // this value changes (useEffect re-run)
+        []//dont put anything inside this array for this useEffect
+    );
+
+    useEffect(() => {
+        setAllData(props.mystate.states.loggedInUserdata)
+    }, [props.mystate.states.loggedInUserdata]);
+
+    useEffect(() => {
+        dispatch({ type: 'COPY_FROM_PROPS_MYSTATE', by: props.mystate.states.loggedInUserdata.chats1[0].messages });
+    }, [props.mystate.states.loggedInUserdata.chats1]);
 
 
+
+    /*
+        useEffect(() => {
+            
+            fireDb.child("checking").push(fdata, (err)=>{
+                if (err){
+                    console.log(err);
+                }
+            })
+        }, []);
+    
+    */
 
     const messagesEndRef = useRef(null);
 
@@ -69,7 +240,10 @@ const ChatBody = (props) => {
 
     useEffect(() => {
         scrollToBottom()
-    }, [data]);
+    }, [redata]);
+
+
+
 
     function keyPressed(e) {
         if (e.key === 'Enter')
@@ -77,26 +251,61 @@ const ChatBody = (props) => {
     }
     function sendMessage() {
         setText('');
-        if (text.length > 0) {
-            setData([...data, {
+        if (text.length >= 1) {
 
-                msgType: "sent",
+            dispatch({
+                type: 'ADD_TO_REDATA', by: {
+
+                    msgType: "sent",
+                    timeStamp: "5 : 48 pm",
+                    msg: text,
+                    isDelivered: "yes",
+                    isReceived: "yes",
+                    isRead: "yes",
+                    id: ""
+                }
+            });
+
+        }
+        if (text.length >= 1) {
+        let oppositeUserNumber = props.mystate.states.loggedInUserdata.chats1[0].phoneNumber;
+        let oppositeUserName = props.mystate.states.loggedInUserdata.chats1[0].name;
+        let ids = props.mystate.states.loggedInUserdata.id;
+        var idsOpposite = props.mystate.states.loggedInUserdata.chats1[0].receiverId;
+        props.actions.updateUserChat({
+
+            msgType: "sent",
+            timeStamp: "5 : 48 pm",
+            msg: text,
+            isDelivered: "yes",
+            isReceived: "yes",
+            isRead: "yes",
+            id: ""
+        }, allData, ids)
+
+        setTimeout(() => {
+            props.actions.updateOppositeUserChat({
+                msgType: "received",
                 timeStamp: "5 : 48 pm",
                 msg: text,
                 isDelivered: "yes",
                 isReceived: "yes",
                 isRead: "yes",
                 id: ""
-            }])
-
-        }
+            }, oppositeUserNumber, idsOpposite).then(res =>{
+                props.actions.updateOppositeUserChatTrigger(idsOpposite,oppositeUserNumber,oppositeUserName);
+            })
+            
+        }, 2000);
     }
+    }
+
 
     return (
         <div>
             <div className="chat-body">
 
-                {data && data.map((text, index) => {
+                {redata && redata.map((text, index) => {
                     if (text.msgType === 'sent') {
                         if (sCount === 0) {
                             sCount++;
@@ -187,12 +396,12 @@ function mapStateToProps(state, ownProps) {
         mystate: state
     };
 }
-/* 
-function mapDispatchToProps(dispatch){
-  return {
-    actions : bindActionCreators(stateActions,dispatch)/*,
-    actions1: bindActionCreators(checkActions,dispatch)
-  };
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(stateActions, dispatch)/*,
+    actions1: bindActionCreators(checkActions,dispatch)*/
+    };
 }
-*/
-export default connect(mapStateToProps,)(withRouter(ChatBody));
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ChatBody));

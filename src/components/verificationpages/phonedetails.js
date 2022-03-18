@@ -50,7 +50,7 @@ const PhoneDetailsPage = (props) => {
         //},1000);
         //clearTimeout(pendingOtp);
       
-      console.log(phoneNumber);
+      //console.log(phoneNumber);
       }
       else
       alert('enter valid number');

@@ -33,8 +33,13 @@ const OtpPage = (props) => {
     const [otp,setOtp] = useState();
 
     function checkOtp(){
-        console.log(otp);
+        //console.log(otp);
+        //console.log(props.mystate.states.enteredPhoneNumber);
         if(otp==='123456'&&props.mystate.states.enteredPhoneNumber==='1234567890') {
+            props.actions.loadLoggedInUserData(props.mystate.states.enteredPhoneNumber);
+            props.history.push('/home');
+        }
+        else if(otp==='123455'&&props.mystate.states.enteredPhoneNumber==='0987654321') {
             props.actions.loadLoggedInUserData(props.mystate.states.enteredPhoneNumber);
             props.history.push('/home');
         }

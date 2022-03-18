@@ -1,6 +1,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 
+
 const firebaseConfig = {
     apiKey: "AIzaSyC3PpKJY_nRE6ejFa9Xo0t7lne549UHQfc",
     authDomain: "whatsapp-v1-3e265.firebaseapp.com",
@@ -13,3 +14,5 @@ const firebaseConfig = {
 const fireDb = firebase.initializeApp(firebaseConfig);
 
 export default fireDb.database().ref();
+
+//   https://whatsapp-v1-3e265-default-rtdb.firebaseio.com/

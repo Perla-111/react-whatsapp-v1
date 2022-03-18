@@ -24,20 +24,20 @@ export default function stateReducer(state = initialState,action){
       case types.CHECK_PHONE_NUMBER_SUCCESS :
         //console.log(action.user);
         let number = action.user[0].phoneNumber;
-        console.log(number);
+        //console.log(action.user[0]);
         let checkNumberState;
         if(number){
         checkNumberState = {...state,enteredPhoneNumber:number,loggedInUserDetails:action.user[0]};
         }
         else
         checkNumberState = state;
-        console.log(checkNumberState);
+        //console.log(checkNumberState);
         return checkNumberState;
 
         case types.LOAD_LOGGEDIN_USER_DATA_SUCCESS :
         //console.log(action.data);
         let checkLoggedInUserData = action.data[0];
-        console.log(action.data);
+        //console.log(action.data);
         let loggedInUserDataState;
 
         if(checkLoggedInUserData){
@@ -46,8 +46,31 @@ export default function stateReducer(state = initialState,action){
         else
         loggedInUserDataState = state;
         
-        console.log(loggedInUserDataState);
+        //console.log(loggedInUserDataState);
         return loggedInUserDataState;
+
+      case types.UPDATE_USER_CHAT_SUCCESS :
+        console.log(action.data);
+        let loggedInUserDataUpdateChat;
+        if(action.data){
+          loggedInUserDataUpdateChat = {...state,loggedInUserdata:action.data};
+        }
+        else loggedInUserDataUpdateChat = state;
+
+        return loggedInUserDataUpdateChat;
+
+      case types.UPDATE_OPPOSITE_USER_CHAT_SUCCESS :
+        if(action.data){
+          console.log(action.data);
+        }
+
+        return state;
+
+      case types.UPDATE_OPPOSITE_USER_CHAT_TRIGGER_SUCCESS :
+        if(action.data){
+          console.log(action.data);
+        }
+        return state;
 
       default :
       return state;
