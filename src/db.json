@@ -2,14 +2,14 @@
   "data": [
     {
       "phoneNumber": "0987654321",
-      "name": "Perla Kalyan",
+      "name": "Interviewer",
       "about": "Urgent calls only",
       "lastSeen": "",
       "isOnline": "",
       "calls": {
         "isIncoming": "yes",
         "isOutgoing": "no",
-        "name": "Kumar",
+        "name": "Kalyan Perla",
         "phoneNumber": "1234567890",
         "timeStamp": "5 : 50 pm",
         "type": "audio"
@@ -18,7 +18,7 @@
         {
           "receiverId": 2,
           "phoneNumber": "1234567890",
-          "name": "Kumar",
+          "name": "Kalyan Perla",
           "about": "Hey There! I am using WhatsApp",
           "lastSeen": "",
           "isOnline": "",
@@ -28,27 +28,9 @@
               "isDelivered": "yes",
               "isRead": "yes",
               "isReceived": "yes",
-              "msg": "Hi",
+              "msg": "Hi Interviewer",
               "msgType": "received",
               "timeStamp": "5 : 48 pm"
-            },
-            {
-              "id": "",
-              "isDelivered": "yes",
-              "isRead": "yes",
-              "isReceived": "yes",
-              "msg": "Hello Kumar",
-              "msgType": "sent",
-              "timeStamp": "5 : 48 pm"
-            },
-            {
-              "id": "",
-              "isDelivered": "yes",
-              "isRead": "yes",
-              "isReceived": "yes",
-              "msg": "How are you?",
-              "msgType": "sent",
-              "timeStamp": "5 : 49 pm"
             }
           ]
         }
@@ -57,14 +39,14 @@
     },
     {
       "phoneNumber": "1234567890",
-      "name": "Kumar",
+      "name": "Kalyan Perla",
       "about": "Hey There! I am using WhatsApp",
       "lastSeen": "",
       "isOnline": "",
       "calls": {
         "isIncoming": "no",
         "isOutgoing": "yes",
-        "name": "Perla Kalyan",
+        "name": "Interviewer",
         "phoneNumber": "0987654321",
         "timeStamp": "5 : 50 pm",
         "type": "audio"
@@ -73,7 +55,7 @@
         {
           "receiverId": 1,
           "phoneNumber": "0987654321",
-          "name": "Perla Kalyan",
+          "name": "Interviewer",
           "about": "Urgent calls only",
           "lastSeen": "",
           "isOnline": "",
@@ -83,27 +65,9 @@
               "isDelivered": "yes",
               "isRead": "yes",
               "isReceived": "yes",
-              "msg": "Hi",
+              "msg": "Hi Interviewer",
               "msgType": "sent",
               "timeStamp": "5 : 48 pm"
-            },
-            {
-              "id": "",
-              "isDelivered": "yes",
-              "isRead": "yes",
-              "isReceived": "yes",
-              "msg": "Hello Kumar",
-              "msgType": "received",
-              "timeStamp": "5 : 48 pm"
-            },
-            {
-              "id": "",
-              "isDelivered": "yes",
-              "isRead": "yes",
-              "isReceived": "yes",
-              "msg": "How are you?",
-              "msgType": "received",
-              "timeStamp": "5 : 49 pm"
             }
           ]
         }
@@ -129,18 +93,19 @@
       "id": 1
     }
   ],
-  "triggeredUsers": [
-    {
-      "id": 2,
-      "phoneNumber": "1234567890",
-      "name": "Kumar",
-      "isTriggered": "false"
-    },
-    {
-      "id": 1,
-      "phoneNumber": "0987654321",
-      "name": "Perla Kalyan",
-      "isTriggered": "false"
-    }
-  ]
+  "triggeredUsers" : [ {
+    "id" : 2,
+    "isTriggered" : "false",
+    "lastMessage" : "",
+    "name" : "Kalyan Perla",
+    "notificationsCount" : 0,
+    "phoneNumber" : "1234567890"
+  }, {
+    "id" : 1,
+    "isTriggered" : "false",
+    "lastMessage" : "",
+    "name" : "Interviewer",
+    "notificationsCount" : 0,
+    "phoneNumber" : "0987654321"
+  } ]
 }

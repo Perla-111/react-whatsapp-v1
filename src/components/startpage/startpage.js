@@ -9,9 +9,13 @@ const StartPage = (props) => {
     const [brandPage,setBrandPage] = useState(true);
 
     useEffect(()=>{
-        setTimeout(() => {
+        let timerr = setTimeout(() => {
             setBrandPage(false);
         }, 2000);
+
+        return () => {
+            clearTimeout(timerr);
+        };
     },[])
 
     return (

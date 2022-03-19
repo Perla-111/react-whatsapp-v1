@@ -25,6 +25,7 @@ var initialState = {
   search:'search-ok',
   enteredPhoneNumber : 0,
   loggedInUserDetails : {},
-  loggedInUserdata : []
-};
+  loggedInUserdata : [],
+  triggeredUsers : []
+}; 
 export default initialState;

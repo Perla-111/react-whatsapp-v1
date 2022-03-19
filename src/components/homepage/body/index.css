@@ -27,10 +27,12 @@
 }
 .body1 .chat-tiles .tile .content .topp{
     display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 .body1 .chat-tiles .tile .content .topp .topp1{
     font-weight : bold;
+    font-size: large;
 }
 .topp2{
     color: grey;
@@ -41,5 +43,11 @@
     justify-content: space-between;
 }
 
+.body1 .chat-tiles .tile .content .bott .textWrapp{
+    white-space: nowrap; 
+    max-width: 200px; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
 
 

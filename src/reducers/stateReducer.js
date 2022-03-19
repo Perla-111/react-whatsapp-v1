@@ -34,6 +34,19 @@ export default function stateReducer(state = initialState,action){
         //console.log(checkNumberState);
         return checkNumberState;
 
+        case types.LOAD_LOGGEDIN_USER_NOTIFICATIONS_SUCCESS :
+        console.log(action.triggeredUsers);
+        let notifications = action.triggeredUsers;
+        let loggedInUserDataNotifications;
+
+        if(notifications){
+          loggedInUserDataNotifications = {...state,triggeredUsers:action.triggeredUsers};
+        }
+        else
+        loggedInUserDataNotifications = state;
+        
+        return loggedInUserDataNotifications;
+
         case types.LOAD_LOGGEDIN_USER_DATA_SUCCESS :
         //console.log(action.data);
         let checkLoggedInUserData = action.data[0];

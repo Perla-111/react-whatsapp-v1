@@ -50,6 +50,15 @@ const ChatBody = (props) => {
 
     const [toHitDb, setToHitDb] = useState('true');
 
+
+    useEffect(() => {
+        setAllData(props.mystate.states.loggedInUserdata)
+    }, [props.mystate.states.loggedInUserdata]);
+
+    useEffect(() => {
+        dispatch({ type: 'COPY_FROM_PROPS_MYSTATE', by: props.mystate.states.loggedInUserdata.chats1[0].messages });
+    }, [props.mystate.states.loggedInUserdata.chats1]);
+
     useEffect(() => {
         var settimer;
         //this is in state to stop trigger post db response.data
@@ -61,6 +70,7 @@ const ChatBody = (props) => {
                 if (toHitDb === 'true') {   //data was changed by other chat so
                     console.log('checking trigger db');
 
+                    props.actions.loadLoggedInUserNotifications(props.mystate.states.enteredPhoneNumber).then(resd => {
                     fireDb.child("triggeredUsers").orderByChild("isTriggered").equalTo('true')
                     .once("value")//.then(snapshot=>snapshot)
                     .then(snapshot => {
@@ -102,6 +112,8 @@ const ChatBody = (props) => {
                                 id: res.data[0].id,
                                 phoneNumber: res.data[0].phoneNumber,
                                 name: res.data[0].name,
+                                lastMessage : res.data[0].lastMessage,
+                                notificationsCount : 0,
                                 isTriggered: 'false'
                             }
                             fireDb.child("triggeredUsers").orderByChild("phoneNumber").equalTo(res.data[0].phoneNumber).once("child_added", function(snapshot) {
@@ -109,7 +121,8 @@ const ChatBody = (props) => {
                                 snapshot.ref.update(toPushInFireDb);
                                 console.log(snapshot.val());
                                 setToHitDb('true');
-                              });
+                              }).then((ress='ok')=>
+                              props.actions.loadLoggedInUserNotifications(res.data[0].phoneNumber));
 
                               /*
                             axios.put(path,
@@ -130,7 +143,7 @@ const ChatBody = (props) => {
                         }
                         else
                             console.log('none');
-                    })
+                    })})
 /* for json-server with axios
                     axios.get("http://localhost:4000/triggeredUsers", {
                         params: {
@@ -210,27 +223,7 @@ const ChatBody = (props) => {
         []//dont put anything inside this array for this useEffect
     );
 
-    useEffect(() => {
-        setAllData(props.mystate.states.loggedInUserdata)
-    }, [props.mystate.states.loggedInUserdata]);
 
-    useEffect(() => {
-        dispatch({ type: 'COPY_FROM_PROPS_MYSTATE', by: props.mystate.states.loggedInUserdata.chats1[0].messages });
-    }, [props.mystate.states.loggedInUserdata.chats1]);
-
-
-
-    /*
-        useEffect(() => {
-            
-            fireDb.child("checking").push(fdata, (err)=>{
-                if (err){
-                    console.log(err);
-                }
-            })
-        }, []);
-    
-    */
 
     const messagesEndRef = useRef(null);
 
@@ -272,6 +265,15 @@ const ChatBody = (props) => {
         let oppositeUserName = props.mystate.states.loggedInUserdata.chats1[0].name;
         let ids = props.mystate.states.loggedInUserdata.id;
         var idsOpposite = props.mystate.states.loggedInUserdata.chats1[0].receiverId;
+        let OppUserNotifications;
+        for(let i=0;i<props.mystate.states.triggeredUsers.length;i++){
+            if(oppositeUserNumber.toString()===props.mystate.states.triggeredUsers[i].phoneNumber.toString()){
+                OppUserNotifications = props.mystate.states.triggeredUsers[i].notificationsCount;
+                console.log(props.mystate.states.triggeredUsers[i].notificationsCount);
+                console.log(oppositeUserNumber);
+            }
+            }
+        let oppositeUserLastMessage = text;
         props.actions.updateUserChat({
 
             msgType: "sent",
@@ -293,7 +295,7 @@ const ChatBody = (props) => {
                 isRead: "yes",
                 id: ""
             }, oppositeUserNumber, idsOpposite).then(res =>{
-                props.actions.updateOppositeUserChatTrigger(idsOpposite,oppositeUserNumber,oppositeUserName);
+                props.actions.updateOppositeUserChatTrigger(idsOpposite,oppositeUserNumber,oppositeUserName,OppUserNotifications,oppositeUserLastMessage);
             })
             
         }, 2000);

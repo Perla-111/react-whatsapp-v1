@@ -7,12 +7,12 @@ export function LoadUserSuccess(user){
   return { type:types.LOAD_USER_SUCCESS,user}
 }
 
-export function admitShowJoineeModal(check){
-  return {type:types.ADMIT_SHOWJOINEE_MODAL,check}
-}
-
 export function CheckUserSuccess(user){
   return {type:types.CHECK_PHONE_NUMBER_SUCCESS,user}
+}
+
+export function LoadLoggedInUserNotificationsSuccess(triggeredUsers){
+  return {type : types.LOAD_LOGGEDIN_USER_NOTIFICATIONS_SUCCESS,triggeredUsers}
 }
 
 export function LoadLoggedInUserDataSuccess(data){
@@ -72,11 +72,21 @@ export function loadUser(){
      };
   }
 
+
   export function checkNumber(phoneNumber){
     return function (dispatch) {
       return UserApi.checkUserNumber(phoneNumber).then(user =>{
         dispatch(CheckUserSuccess(user));
       }).catch(error => {throw(error);});
+    }
+  }
+
+  export function loadLoggedInUserNotifications(phoneNumber){
+    return function(dispatch) {
+      return UserApi.loadLoggedInUserNotifications(phoneNumber).then(triggeredUsers=>{
+        dispatch(LoadLoggedInUserNotificationsSuccess(triggeredUsers));
+      }).catch(error=>{throw(error);})
+      .then((resd='ok1')=>resd);
     }
   }
 
@@ -106,9 +116,9 @@ export function loadUser(){
     }
   }
 
- export function updateOppositeUserChatTrigger(idsOpposite,oppositeUserNumber,oppositeUserName){
+ export function updateOppositeUserChatTrigger(idsOpposite,oppositeUserNumber,oppositeUserName,OppUserNotifications,oppositeUserLastMessage){
    return function(dispatch){
-    return UserApi.updateOppositeUserChatTrigger(idsOpposite,oppositeUserNumber,oppositeUserName).then(data => {
+    return UserApi.updateOppositeUserChatTrigger(idsOpposite,oppositeUserNumber,oppositeUserName,OppUserNotifications,oppositeUserLastMessage).then(data => {
       dispatch(UpdateOppositeUserChatTriggerSuccess(data));
     }).catch(error => {throw(error);});
     }
