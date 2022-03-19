@@ -2,7 +2,7 @@
 
 # dependencies
 /node_modules/*
-!/node_modules/axios
+!/node_modules/react-webcam
 /.pnp
 .pnp.js
 
