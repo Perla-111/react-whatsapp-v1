@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/react-whatsapp-v1/static/css/main.76b63402.css",
-    "main.js": "/react-whatsapp-v1/static/js/main.fb8e8710.js",
+    "main.css": "/react-whatsapp-v1/static/css/main.c133a4d2.css",
+    "main.js": "/react-whatsapp-v1/static/js/main.2b6f20ec.js",
     "static/js/787.7c398c2d.chunk.js": "/react-whatsapp-v1/static/js/787.7c398c2d.chunk.js",
     "static/media/start1.png": "/react-whatsapp-v1/static/media/start1.a582fb9ffeb8b6ae2b7c.png",
     "static/media/whatsapp-wall.png": "/react-whatsapp-v1/static/media/whatsapp-wall.f4b196f1bce2137c76a3.png",
     "static/media/start2.png": "/react-whatsapp-v1/static/media/start2.757699b4abe3c234098f.png",
     "index.html": "/react-whatsapp-v1/index.html",
-    "main.76b63402.css.map": "/react-whatsapp-v1/static/css/main.76b63402.css.map",
-    "main.fb8e8710.js.map": "/react-whatsapp-v1/static/js/main.fb8e8710.js.map",
+    "main.c133a4d2.css.map": "/react-whatsapp-v1/static/css/main.c133a4d2.css.map",
+    "main.2b6f20ec.js.map": "/react-whatsapp-v1/static/js/main.2b6f20ec.js.map",
     "787.7c398c2d.chunk.js.map": "/react-whatsapp-v1/static/js/787.7c398c2d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.76b63402.css",
-    "static/js/main.fb8e8710.js"
+    "static/css/main.c133a4d2.css",
+    "static/js/main.2b6f20ec.js"
   ]
 }
