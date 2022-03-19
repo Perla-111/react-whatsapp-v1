@@ -3,12 +3,27 @@ import './index.css';
 import { withRouter } from 'react-router-dom';
 
 import {Modal} from 'react-bootstrap';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { IconButton } from '@material-ui/core';
+import CameraAltIcon from '@material-ui/icons/CameraAlt';
 
+import cx from 'classnames';
+
+import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
+
+import * as stateActions from '../../../actions/stateActions';
 
 const Header = (props) => {
 
     const [settingPopup,setSettingPopup] = useState(false);
+    //let checkActive = 3;
+    const [checkActive,setCheckActive] = useState();
+
+    useEffect(()=>{
+        console.log(props.mystate.states.checkActive)
+        setCheckActive(props.mystate.states.checkActive);
+    },[props.mystate.states.checkActive]);
 
     function CloseSettingPopup(){
         setSettingPopup(false);
@@ -43,19 +58,38 @@ const Header = (props) => {
 </div>
 
         <div className="header_menu">  
-            <div className="camera" >
+            <div className="camera" onClick={()=>{props.actions.setActiveTab(1);
+                props.history.push('/cam')}}>
             <label >
-                <i className="bi bi-camera"></i>
+                <IconButton><CameraAltIcon style={{margin:'-10px -10px -10px 0px',padding:'0px'}} 
+                className={cx({'active':(checkActive===0)?true:false})}/></IconButton>
             </label>
             </div>                  
                
             <div className="spread">
-            <label onClick={()=>{props.history.push('/home')}}>CHATS</label>
-            <label>STATUS</label>
-            <label onClick={()=>{props.history.push('/call')}}>CALLS</label>
+            <label onClick={()=>{props.actions.setActiveTab(1);
+                props.history.push('/home');}} className={cx({'active':(checkActive===1)?true:false})}>CHATS</label>
+            <label onClick={()=>{props.actions.setActiveTab(2);
+                props.history.push('/status')}} className={cx({'active':(checkActive===2)?true:false})}>STATUS</label>
+            <label onClick={()=>{props.actions.setActiveTab(3);
+                props.history.push('/call')}} className={cx({'active':(checkActive===3)?true:false})}>CALLS</label>
             </div>
         </div>
         </div>
     );
 }
-export default withRouter(Header);
+
+function mapStateToProps(state,ownProps){
+    return {
+      mystate : state
+    };
+  }
+  
+  function mapDispatchToProps(dispatch){
+    return {
+      actions : bindActionCreators(stateActions,dispatch)/*,
+      actions1: bindActionCreators(checkActions,dispatch)*/
+    };
+  }
+  
+  export default connect(mapStateToProps,mapDispatchToProps)(withRouter(Header));

@@ -25,7 +25,14 @@ const Settings = (props) =>{
     return(
         <div className='settingsPage'>
             <div className='settingsHeader'>
-                <label className='backIcon' onClick={()=>{props.history.push('/home')}}>
+                <label className='backIcon' onClick={()=>{
+                    if(props.mystate.states.checkActive===1)
+                    props.history.push('/home')
+                    else if(props.mystate.states.checkActive===2)
+                    props.history.push('/status')
+                    else if(props.mystate.states.checkActive===3)
+                    props.history.push('/call')
+                    }}>
                     <IconButton>
                     <ArrowBackIcon style={{color:'whitesmoke',fontSize:'30px'}}></ArrowBackIcon>
                     </IconButton></label>

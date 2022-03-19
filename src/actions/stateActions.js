@@ -7,6 +7,10 @@ export function LoadUserSuccess(user){
   return { type:types.LOAD_USER_SUCCESS,user}
 }
 
+export function setActiveTab(number){
+  return { type:types.SET_TAB_NUMBER_SUCCESS,number}
+}
+
 export function CheckUserSuccess(user){
   return {type:types.CHECK_PHONE_NUMBER_SUCCESS,user}
 }

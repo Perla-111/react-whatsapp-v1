@@ -41,6 +41,7 @@ const ChatTiles = (props) => {
         }
         //console.log(props.mystate.states.triggeredUsers);
         //console.log(chatData);
+        // eslint-disable-next-line 
     },[props.mystate.states.triggeredUsers,props.mystate.states.loggedInUserdata.phoneNumber])
 
 
@@ -208,6 +209,7 @@ const ChatTiles = (props) => {
         // like this - [data]
         // than clearTimeout will run every time
         // this value changes (useEffect re-run)
+        // eslint-disable-next-line
         []//dont put anything inside this array for this useEffect
     );
 
@@ -280,7 +282,7 @@ const ChatTiles = (props) => {
         </div>*/}
 
         </div>
-        <HoverIcons />
+        <HoverIcons props={'HomePage'}/>
 
 </div>
     );

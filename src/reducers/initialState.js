@@ -23,6 +23,7 @@ var initialState = {
     tManufacturerCheck:""
   },*/
   search:'search-ok',
+  checkActive:1,
   enteredPhoneNumber : 0,
   loggedInUserDetails : {},
   loggedInUserdata : [],

@@ -18,13 +18,17 @@ font-weight : 600;
 
 
 .header1 .header_menu{
-    color:white;
+    /*color:white;*/
     padding : 0.5rem;
     background: #128C7E;
     /*background: #075e54;   dark green sample color*/
     display: flex;
     flex-direction : row;
     width: 100%;
+}
+
+.header1 .header_menu .active{
+    color : white;
 }
 
 .header1 .header_menu .camera{

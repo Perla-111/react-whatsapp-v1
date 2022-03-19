@@ -1,0 +1,38 @@
+.camPage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: black;
+    width: 100%;
+}
+
+.camPage .btn1{
+    background: green;
+    position : fixed;
+    bottom: 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight : bold;
+    color : white;
+    height: 80px;
+    width : 80px;
+    border-radius : 40px;
+    border: 5px solid red;
+}
+
+.camPage .btn2{
+    background: tomato;
+    position : fixed;
+    bottom: 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight : bold;
+    color : white;
+    height: 80px;
+    width : 80px;
+    border-radius : 40px;
+    border: 5px solid green;
+}

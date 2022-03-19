@@ -8,6 +8,11 @@ export default function stateReducer(state = initialState,action){
       console.log(action.user);
       return state;
 
+      case types.SET_TAB_NUMBER_SUCCESS :
+        let newState = {...state,checkActive:action.number}
+        console.log(newState);
+        return newState;
+
       /*
       case types.ADMIT_SHOWJOINEE_MODAL :
         console.log("ok");
