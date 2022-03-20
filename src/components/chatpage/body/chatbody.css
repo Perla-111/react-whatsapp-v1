@@ -9,19 +9,17 @@
 }
 .chat-body .chat-message{
     position : relative;
-    margin-right: auto;
     font-weight:500;
     font-size : 18px;
     word-wrap: break-word;
     padding : 10px;
-    padding-bottom: 20px;
-    padding-right: 75px;
     min-width: 100px;
     max-width : 300px;
     border-radius: 10px;
     border-top-left-radius: 0px;
     background-color: white;
     margin-bottom : 10px;
+    margin-right: auto;
 }
 .chat-body .chat-message .bubble-received{
     content: "";
@@ -41,9 +39,7 @@
     font-size : 18px;
     padding : 10px;
     word-wrap: break-word;
-    padding-bottom: 20px;
     min-width: 100px;
-    padding-right: 75px;
     margin-right: auto;
     max-width : 300px;
     border-radius: 10px;
@@ -51,9 +47,11 @@
     margin-bottom : 10px;
 }
 .chat-body .chat-timestamp-r{
-    margin-left : 10px;
-    bottom : 3px;
-    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    margin-bottom:-0.6rem;
+    bottom: 3px;
     color: gray;
     font-size: small;
 }

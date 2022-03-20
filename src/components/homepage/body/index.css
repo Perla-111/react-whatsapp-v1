@@ -3,6 +3,8 @@
     display: flex;
     height: 83.33vh;
     overflow-y: scroll;
+    margin-top : 5px;
+    margin-bottom : -5px;
 }
 .body1 .chat-tiles{
     display: flex;
@@ -55,5 +57,18 @@
     overflow: hidden;
     text-overflow: ellipsis; 
 }
-
+/*
+.body1 .roundedcircle{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    font-size: 14px;
+    font-weight: bold;
+    color : white;
+    background : limegreen;
+    border-radius: 25px;
+    width : 20px;
+    height : 20px;
+}
+*/
 

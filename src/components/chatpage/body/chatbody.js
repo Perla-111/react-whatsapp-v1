@@ -50,6 +50,8 @@ const ChatBody = (props) => {
 
     const [toHitDb, setToHitDb] = useState('true');
 
+    //console.log(new Date().toLocaleDateString());
+   // console.log(new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit' }));
 
     useEffect(() => {
         setAllData(props.mystate.states.loggedInUserdata)
@@ -250,7 +252,8 @@ const ChatBody = (props) => {
                 type: 'ADD_TO_REDATA', by: {
 
                     msgType: "sent",
-                    timeStamp: "5 : 48 pm",
+                    timeStamp: new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit' }),
+                    dateStamp:new Date().toLocaleDateString(),
                     msg: text,
                     isDelivered: "yes",
                     isReceived: "yes",
@@ -277,7 +280,8 @@ const ChatBody = (props) => {
         props.actions.updateUserChat({
 
             msgType: "sent",
-            timeStamp: "5 : 48 pm",
+            timeStamp: new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit' }),
+            dateStamp:new Date().toLocaleDateString(),
             msg: text,
             isDelivered: "yes",
             isReceived: "yes",
@@ -288,7 +292,8 @@ const ChatBody = (props) => {
         setTimeout(() => {
             props.actions.updateOppositeUserChat({
                 msgType: "received",
-                timeStamp: "5 : 48 pm",
+                timeStamp: new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit' }),
+                dateStamp:new Date().toLocaleDateString(),
                 msg: text,
                 isDelivered: "yes",
                 isReceived: "yes",
@@ -323,8 +328,7 @@ const ChatBody = (props) => {
                         })}>
                             {text.msg}
                             <span className="chat-timestamp-s">
-                                {new Date().getHours().toString()}:
-                                {new Date().getMinutes().toString()}&nbsp;pm
+                                {text.timeStamp}
                             </span>
                             {sent && <span className="bubble-sent"></span>}
                         </div>
@@ -346,11 +350,11 @@ const ChatBody = (props) => {
                             "chat-message-repeat": !received
                         })}>
                             {text.msg}
-                            {received && <span className="bubble-received"></span>}
+                            
                             <span className="chat-timestamp-r">
-                                {new Date().getHours().toString()}:
-                                {new Date().getMinutes().toString()}&nbsp;pm
+                            {text.timeStamp}
                             </span>
+                            {received && <span className="bubble-received"></span>}
                         </p>
                     }
                 })}

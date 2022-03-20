@@ -90,7 +90,7 @@ const StatusPage = (props) => {
                             <div className= "log-name">Interviewer</div>
                             <div className="log-details">
                                 
-                            <label>Today, 10:32 am</label>
+                            <label>Yesterday, 05:25 pm</label>
                             </div>
                         </div>
                     </div>
