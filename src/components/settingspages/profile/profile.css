@@ -20,9 +20,11 @@
     justify-content: center;
 }
 .profile .dp .dpCameraIcon{
-    position : absolute;
-    top : 25%;
-    left : 55%;
+    position : relative;
+    display: flex;
+    justify-content: flex-end;
+    margin-top : -3rem;
+    margin-left : 7rem;
     background: #128C7E;
     border-radius: 25px;
 }
@@ -45,7 +47,7 @@
     flex-direction: column;
     padding :10px 0px 0px 30px;
 }
-
+/*
 @media screen and (min-width : 450px){
     .profile .dp .dpCameraIcon{
         position : absolute;
@@ -55,3 +57,4 @@
         border-radius: 25px;
     }
 }
+*/

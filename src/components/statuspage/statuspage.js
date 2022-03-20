@@ -8,10 +8,20 @@ import HoverIcons from '../hoverIcons/hoverIcons';
 import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';import dp1 from '../../data/dp/dp1.jpg';
 
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+
 /*                    <svg width="55" height="55" viewBox="0 0 100 100">
   <circle cx="50" cy="50" r="48" fill="none" stroke="rgb(16, 248, 113)" stroke-width="6" stroke-dasharray="90 8" stroke-dashoffset="0"/>
   </svg>*/
-const StatusPage = () => {
+const StatusPage = (props) => {
+
+    useEffect(()=>{
+        if(props.mystate.states.loggedInUserdata.length === 0){
+            props.history.push('/');
+        }
+        else             props.history.push('/status');
+    },[]);
 
     let a=[1,2,3,4,5,6];
 
@@ -95,4 +105,12 @@ const StatusPage = () => {
         </div>
     );
 }
-export default withRouter(StatusPage);
+
+function mapStateToProps(state, ownProps) {
+    return {
+        mystate: state
+    };
+}
+
+
+export default connect(mapStateToProps,)(withRouter(StatusPage));

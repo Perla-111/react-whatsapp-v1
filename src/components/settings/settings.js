@@ -15,12 +15,21 @@ import {IconButton} from '@material-ui/core';
 import {withRouter} from 'react-router-dom';
 
 import { connect } from 'react-redux';
-//import { useState } from 'react';
+import { useEffect } from 'react';
 //import {bindActionCreators} from 'redux';
 
 //import * as stateActions from '../../actions/stateActions';
 
 const Settings = (props) =>{
+
+    useEffect(()=>{
+        if(props.mystate.states.loggedInUserdata.length === 0){
+            props.history.push('/');
+        }
+        else             props.history.push('/settings');
+    },[]);
+
+
     const userDetails = props.mystate.states.loggedInUserDetails;
     return(
         <div className='settingsPage'>

@@ -9,6 +9,8 @@ import VideocamIcon from '@material-ui/icons/Videocam';
 import CallIcon from '@material-ui/icons/Call';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
+//We are Inevitables👶🏻
+
 const ChatHeader = (props) => {
     return (
         <div className="chat-header" >
@@ -21,8 +23,8 @@ const ChatHeader = (props) => {
             </div>
             
             <div className="title" >
-                <div className="top">We are Inevitables👶🏻</div>
-                <div className="bottom">last seen/online</div>
+                <div className="top">{props.match.params.x}</div>
+                <div className="bottom">{props.match.params.y}</div>
             </div>
         </div>
         <div className="right">

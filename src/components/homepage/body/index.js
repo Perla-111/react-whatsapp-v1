@@ -49,6 +49,12 @@ const ChatTiles = (props) => {
 
 
     useEffect(() => {
+        /*
+        let onlineTimer = setInterval(()=>{
+        if(props.mystate.states.triggeredUsers.length>0){
+
+            }
+        },10000);*/
         var settimer;
         //this is in state to stop trigger post db response.data
         //let count =0;//should not be in state in this demo example
@@ -201,6 +207,7 @@ const ChatTiles = (props) => {
             console.log('cleared timeout');
             clearTimeout(timer1);
             clearInterval(settimer);
+           // clearInterval(onlineTimer);
             //clearTimeout(timer2);
         };
     },
@@ -212,7 +219,7 @@ const ChatTiles = (props) => {
         // eslint-disable-next-line
         []//dont put anything inside this array for this useEffect
     );
-
+ 
     return (
         <div className="body1">
         <div className="chat-tiles" >
@@ -223,11 +230,19 @@ const ChatTiles = (props) => {
             <img className="dp" src={dp1} alt="nnnn" height="49px"
             width="49px"></img>
             <div className="content" onClick={()=>{props.history.push(
-                {pathname : '/inChat'}
+                {pathname : `/inChat/${oppositeUserChatData.name}/${'online'}`}
             )}}>
             <div className="topp">
                 <div className="topp1">{oppositeUserChatData.name}</div>
-                <div className="topp2">{'yesterday'}</div>
+                {chat.notificationsCount>0?
+                <div className="topp3">
+                    <span >
+                {new Date().getHours().toString()<=9? `0${new Date().getHours().toString()}`:`${new Date().getHours().toString()}`}:
+                {new Date().getMinutes().toString()<=9?
+                `0${new Date().getMinutes().toString()}`
+                :`${new Date().getMinutes().toString()}`}&nbsp;{new Date().getHours().toString()<=11?'am':'pm'}
+            </span></div>:
+                <div className="topp2">{'today'}</div>}
             </div>
             <div className="bott">
                 <label className='textWrapp'>{/*chat.group*/false?`${'chat.chatMemberName'}: `:''}{lastmessage}</label>
@@ -241,6 +256,7 @@ const ChatTiles = (props) => {
         </div>
             )
             }
+            
 
 
 

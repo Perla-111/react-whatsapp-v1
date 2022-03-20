@@ -1,9 +1,11 @@
 .chat-body{
     display: flex;
     flex-direction : column;
-    height: 78.86056vh;
+    /*height: 78.86056vh;*/
+    height: 77.26056vh;
     overflow-y: scroll;
     padding: 15px 15px 0 15px;
+    margin-bottom: 0rem;
 }
 .chat-body .chat-message{
     position : relative;
@@ -105,17 +107,20 @@
 }
 
 .input-actions {
+    position: fixed;
+    bottom : 2.2rem;
     display: flex;
     flex-direction : row;
     width : 100%;
     justify-content : space-between;
     align-items : center;
+    margin-top: 0.5rem;
 }
 .input-actions .left{
     display: flex;
     flex-direction : row;
-    flex:1;
     justify-content : space-between;
+    flex:1;
     border-radius : 30px;
     background-color: white;
 }

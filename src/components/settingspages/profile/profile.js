@@ -14,7 +14,6 @@ import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import {withRouter} from 'react-router-dom';
 
 import { connect } from 'react-redux';
-//import { useState } from 'react';
 //import {bindActionCreators} from 'redux';
 
 //import * as stateActions from '../../actions/stateActions';
@@ -22,11 +21,11 @@ import { connect } from 'react-redux';
 class Profile extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            name: 'Name from state',
-            status: '',
-            phoneNumber: ''
+
+        if(this.props.mystate.states.loggedInUserdata.length === 0){
+            this.props.history.push('/');
         }
+        else             this.props.history.push('/profile');
     }
     render() {
         const userDetails = this.props.mystate.states.loggedInUserDetails;

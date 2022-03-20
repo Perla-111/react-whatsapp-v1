@@ -5,7 +5,7 @@ import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import MicIcon from '@material-ui/icons/Mic';
-
+import SendIcon from '@material-ui/icons/Send';
 import { useEffect, useState, useReducer, useRef } from 'react';
 import cx from 'classnames';
 //import testData from "../../../data/sample/testData";
@@ -382,9 +382,12 @@ const ChatBody = (props) => {
                 <div className="right">
                     <IconButton
                         style={{ outlineWidth: '0' }}
-                        onClick={sendMessage}>
+                        onClick={sendMessage} >
+                        {!text?
                         <MicIcon style={{ color: "white" }}
-                        />
+                        /> :
+                        <SendIcon style={{ color: "white" }}
+                        />}
                     </IconButton>
                 </div>
             </div>

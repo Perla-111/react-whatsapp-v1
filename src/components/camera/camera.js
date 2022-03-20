@@ -7,8 +7,17 @@ import Footer from '../footer/footer';
 import { withRouter } from 'react-router-dom';
 
 import cx from 'classnames';
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
 
-function CameraPage() {
+function CameraPage(props) {
+
+    useEffect(()=>{
+        if(props.mystate.states.loggedInUserdata.length === 0){
+            props.history.push('/');
+        }
+        else             props.history.push('/cam');
+    },[]);
 
     const [isShowVideo, setIsShowVideo] = useState(false);
     const [buttonName, setButtonName] = useState('Start');
@@ -56,4 +65,12 @@ function CameraPage() {
     );
 };
 
-export default withRouter(CameraPage);
+
+function mapStateToProps(state, ownProps) {
+    return {
+        mystate: state
+    };
+}
+
+
+export default connect(mapStateToProps,)(withRouter(CameraPage));

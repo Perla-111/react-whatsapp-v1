@@ -28,6 +28,30 @@ const useStyles = makeStyles((theme) => ({
 
 const OtpPage = (props) => {
 
+    useEffect(()=>{
+        if(props.mystate.states.enteredPhoneNumber!==0)
+            if(props.mystate.states.loggedInUserdata.length === 0) props.history.push('/');
+             else props.history.push('/home');
+         }
+     ,[]);
+    /*
+    useEffect(()=>{
+        
+       let pagetimer = setTimeout(()=>{
+            if(props.mystate.states.enteredPhoneNumber === 0){
+                props.history.push('/');
+            }
+            else if(props.mystate.states.loggedInUserdata.length === 0) props.history.push('/verifyotp');
+            else props.history.push('/home');
+        },3000)
+
+
+        return ()=>{
+            clearTimeout(pagetimer);
+        }
+    },[]);
+    */
+
     const classes = useStyles();
 
     const [otp, setOtp] = useState();
@@ -64,11 +88,13 @@ const OtpPage = (props) => {
         if (otp === '123456' && props.mystate.states.enteredPhoneNumber === '1234567890') {
             props.actions.loadLoggedInUserNotifications(props.mystate.states.enteredPhoneNumber)
             props.actions.loadLoggedInUserData(props.mystate.states.enteredPhoneNumber);
+            //props.actions.changeLoggedInUserOnlineStatus('yes');
             props.history.push('/home');
         }
         else if (otp === '123455' && props.mystate.states.enteredPhoneNumber === '0987654321') {
             props.actions.loadLoggedInUserNotifications(props.mystate.states.enteredPhoneNumber)
             props.actions.loadLoggedInUserData(props.mystate.states.enteredPhoneNumber);
+            //props.actions.changeLoggedInUserOnlineStatus('yes');
             props.history.push('/home');
         }
         else {

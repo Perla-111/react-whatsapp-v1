@@ -7,8 +7,9 @@
 display: flex;
 justify-content :space-between;
 color : white;
-padding:15px;
-font-weight : 600;
+padding:15px 15px 10px 15px;
+font-size : 19px;
+font-weight : bold;
 }
 .header1 .header_title .one{
     padding-right:15px;

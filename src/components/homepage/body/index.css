@@ -8,13 +8,14 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    padding-top : 5px;
 }
 .body1 .chat-tiles .tile{
     display : flex;
     flex-direction : row;
     max-height : 72px;
     align-items: center;
-    padding : 15px;
+    padding : 10px 15px 15px 15px;
 }
 .body1 .chat-tiles .tile .dp{
     border-radius: 25px;
@@ -37,6 +38,11 @@
 .topp2{
     color: grey;
     font-size : 15px;
+}
+.topp3{
+    color: #128C7E;
+    font-size : 15px;
+    font-weight : bold;
 }
 .body1 .chat-tiles .tile .content .bott{
     display: flex;

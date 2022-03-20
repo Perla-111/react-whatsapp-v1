@@ -16,9 +16,17 @@ import CallReceivedIcon from '@material-ui/icons/CallReceived';
 //import CallMissedOutgoingIcon from '@material-ui/icons/CallMissedOutgoing';
 import { IconButton } from '@material-ui/core';
 
-
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
 
 const CallPage = (props) => {
+
+    useEffect(()=>{
+        if(props.mystate.states.loggedInUserdata.length === 0){
+            props.history.push('/');
+        }
+        else             props.history.push('/call');
+    },[]);
 
     let a=[1,2,3,4,5,6,7,8,9,0];
     return (
@@ -60,4 +68,12 @@ const CallPage = (props) => {
         </div>
     );
 }
-export default withRouter(CallPage);
+
+function mapStateToProps(state, ownProps) {
+    return {
+        mystate: state
+    };
+}
+
+
+export default connect(mapStateToProps,)(withRouter(CallPage));

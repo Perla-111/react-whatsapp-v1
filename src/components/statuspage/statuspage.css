@@ -1,5 +1,7 @@
 .statusPage {
     height: 100vh;
+    overflow: hidden;
+
 }
 .callpage-2{
     overflow-y : scroll;

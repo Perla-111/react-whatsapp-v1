@@ -6,19 +6,37 @@ import Footer from '../footer/footer';
 import ChatTiles from './body';
 import Header from './header';
 
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
 
-class HomePage extends React.Component{
+const HomePage =(props) => {
 
-    render(){
+        useEffect(()=>{
+                if(props.mystate.states.enteredPhoneNumber === 0){
+                    props.history.push('/');
+                }
+                else             props.history.push('/home');
+            },[]);
+
         return(
             <div className="HomePage">
 
-                    <Header />
+                    <Header  />
                     <ChatTiles />
                     <Footer />
 
             </div>
         );
-    }
+    
 }
-export default withRouter(HomePage);
+
+
+
+function mapStateToProps(state, ownProps) {
+        return {
+            mystate: state
+        };
+    }
+    
+
+export default connect(mapStateToProps,)(withRouter(HomePage));
