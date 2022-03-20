@@ -72,6 +72,16 @@ const ChatBody = (props) => {
                 if (toHitDb === 'true') {   //data was changed by other chat so
                     console.log('checking trigger db');
 
+                    
+                    fireDb.child("triggeredUsers").orderByChild("phoneNumber").equalTo(props.mystate.states.enteredPhoneNumber)
+                    .once("child_added", function (snapshot) {
+                                            snapshot.ref.update({notificationsCount : 0});
+                                            console.log(snapshot.val());
+                                            
+                                        }).then(
+                    
+
+
                     props.actions.loadLoggedInUserNotifications(props.mystate.states.enteredPhoneNumber).then(resd => {
                     fireDb.child("triggeredUsers").orderByChild("isTriggered").equalTo('true')
                     .once("value")//.then(snapshot=>snapshot)
@@ -95,10 +105,10 @@ const ChatBody = (props) => {
                         }
 
                         if (res.data.length > 0) {
-                            setToHitDb('false');
+                            //setToHitDb('false');
                             console.log(res.data[0].phoneNumber.toString());
                             console.log(props.mystate.states.loggedInUserdata.phoneNumber.toString());
-                            if(res.data[0].id.toString()===props.mystate.states.loggedInUserdata.id.toString()){
+                            if(res.data[0].phoneNumber.toString()===props.mystate.states.loggedInUserdata.phoneNumber.toString()){
                             props.actions.loadLoggedInUserData(res.data[0].phoneNumber);
                             //let path = `http://localhost:4000/triggeredUsers/${res.data[0].id}`;
                             /*
@@ -118,13 +128,17 @@ const ChatBody = (props) => {
                                 notificationsCount : 0,
                                 isTriggered: 'false'
                             }
+                            console.log(toPushInFireDb);
                             fireDb.child("triggeredUsers").orderByChild("phoneNumber").equalTo(res.data[0].phoneNumber).once("child_added", function(snapshot) {
                              
                                 snapshot.ref.update(toPushInFireDb);
                                 console.log(snapshot.val());
-                                setToHitDb('true');
-                              }).then((ress='ok')=>
-                              props.actions.loadLoggedInUserNotifications(res.data[0].phoneNumber));
+                                
+                              }).then((ress='ok')=>{
+                                console.log(res.data[0].phoneNumber);
+
+                              props.actions.loadLoggedInUserNotifications(res.data[0].phoneNumber);
+                              setToHitDb('true');});
 
                               /*
                             axios.put(path,
@@ -145,7 +159,7 @@ const ChatBody = (props) => {
                         }
                         else
                             console.log('none');
-                    })})
+                    })}))
 /* for json-server with axios
                     axios.get("http://localhost:4000/triggeredUsers", {
                         params: {

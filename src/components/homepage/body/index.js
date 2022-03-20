@@ -91,7 +91,7 @@ const ChatTiles = (props) => {
                                 }
 
                                 if (res.data.length > 0) {
-                                    setToHitDb('false');
+                                    //setToHitDb('false');
                                     console.log(res.data[0].phoneNumber.toString());
                                     console.log(props.mystate.states.enteredPhoneNumber.toString());//replaced this 2 places -> props.mystate.states.loggedInUserdata.phoneNumber
                                     if (res.data[0].phoneNumber.toString() === props.mystate.states.enteredPhoneNumber.toString()) {
@@ -111,16 +111,18 @@ const ChatTiles = (props) => {
                                             phoneNumber: res.data[0].phoneNumber,
                                             name: res.data[0].name,
                                             lastMessage: res.data[0].lastMessage,
-                                            notificationsCount: res.data[0].notificationsCount,
+                                        notificationsCount: res.data[0].notificationsCount,
                                             isTriggered: 'false'
                                         }
                                         fireDb.child("triggeredUsers").orderByChild("phoneNumber").equalTo(res.data[0].phoneNumber).once("child_added", function (snapshot) {
 
                                             snapshot.ref.update(toPushInFireDb);
                                             console.log(snapshot.val());
-                                            setToHitDb('true');
-                                        }).then((ress = 'ok') =>
-                                            props.actions.loadLoggedInUserNotifications(res.data[0].phoneNumber));
+                                            
+                                        }).then((ress = 'ok') =>{
+                                            console.log(res.data[0].phoneNumber);
+                                            props.actions.loadLoggedInUserNotifications(res.data[0].phoneNumber);
+                                            setToHitDb('true');});
 
                                         /*
                                       axios.put(path,
@@ -242,11 +244,9 @@ const ChatTiles = (props) => {
                                     <div className="topp1">{oppositeUserChatData.name}</div>
                                     {chat.notificationsCount > 0 ?
                                         <div className="topp3">
-                                            <span >
-                                                {new Date().getHours().toString() <= 9 ? `0${new Date().getHours().toString()}` : `${new Date().getHours().toString()}`}:
-                                                {new Date().getMinutes().toString() <= 9 ?
-                                                    `0${new Date().getMinutes().toString()}`
-                                                    : `${new Date().getMinutes().toString()}`}&nbsp;{new Date().getHours().toString() <= 11 ? 'am' : 'pm'}
+                                            <span >{props.mystate.states.loggedInUserdata.chats1[0].messages[props.mystate.states.loggedInUserdata.chats1[0].messages.length-1].timeStamp}
+                                                {/*{new Date().getHours().toString() <= 9 ? `0${new Date().getHours().toString()}` : `${new Date().getHours().toString()}`}:*/}
+                                                {/*new Date().getMinutes().toString() <= 9 ?`0${new Date().getMinutes().toString()}`: `${new Date().getMinutes().toString()}`}&nbsp;{new Date().getHours().toString() <= 11 ? 'am' : 'pm'}*/}
                                             </span></div> :
                                         <div className="topp2">{'today'}</div>}
                                 </div>
