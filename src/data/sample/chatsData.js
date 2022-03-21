@@ -12,7 +12,7 @@ var restchatsData = [
     },
     {
         uid: 'c2',
-        name : "Surya Kumar",
+        name : "Sukumar",
         lastChatOn : '25/03/2022',
         group : false,
         chatMember : 'chat2',

@@ -39,6 +39,18 @@ export default function stateReducer(state = initialState,action){
         //console.log(checkNumberState);
         return checkNumberState;
 
+        case types.SET_LOGGEDIN_USER_NOTIFICATIONS_TO_ZERO_SUCCESS :
+          let notificationsToZero = state.triggeredUsers;
+          for(let i=0;i<state.triggeredUsers.length;i++){
+            if(state.triggeredUsers[i].phoneNumber===action.phoneNumber)
+            {
+              notificationsToZero[i].notificationsCount = 0;
+            }
+          }
+          let NewNotificationsAndAllState = {...state,triggeredUsers:notificationsToZero};
+          console.log(NewNotificationsAndAllState);
+        return state
+
         case types.LOAD_LOGGEDIN_USER_NOTIFICATIONS_SUCCESS :
         console.log(action.triggeredUsers);
         let notifications = action.triggeredUsers;

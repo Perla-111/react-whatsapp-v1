@@ -237,9 +237,10 @@ const ChatTiles = (props) => {
                             <img className="dp" src={dp1} alt="nnnn" height="49px"
                                 width="49px"></img>
                             <div className="content" onClick={() => {
+                                props.actions.setLoggedInUserNotificationsStateToZero(props.mystate.states.enteredPhoneNumber);
                                 props.history.push(
                                     { pathname: `/inChat/${oppositeUserChatData.name}/${'online'}` }
-                                )
+                                );
                             }}>
                                 <div className="topp">
                                     <div className="topp1">{oppositeUserChatData.name}</div>

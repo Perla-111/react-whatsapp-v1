@@ -82,7 +82,7 @@ const ChatBody = (props) => {
                     
 
 
-                    props.actions.loadLoggedInUserNotifications(props.mystate.states.enteredPhoneNumber).then(resd => {
+                    //props.actions.loadLoggedInUserNotifications(props.mystate.states.enteredPhoneNumber).then(resd => {
                     fireDb.child("triggeredUsers").orderByChild("isTriggered").equalTo('true')
                     .once("value")//.then(snapshot=>snapshot)
                     .then(snapshot => {
@@ -159,7 +159,7 @@ const ChatBody = (props) => {
                         }
                         else
                             console.log('none');
-                    })}))
+                    }))
 /* for json-server with axios
                     axios.get("http://localhost:4000/triggeredUsers", {
                         params: {
@@ -218,7 +218,7 @@ const ChatBody = (props) => {
                 else {
                     console.log('none');
                 }
-            }, 3000*100);
+            }, 3000);
         }, 2000);
 
         // this will clear Timeout

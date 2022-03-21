@@ -19,6 +19,10 @@ export function LoadLoggedInUserNotificationsSuccess(triggeredUsers){
   return {type : types.LOAD_LOGGEDIN_USER_NOTIFICATIONS_SUCCESS,triggeredUsers}
 }
 
+export function setLoggedInUserNotificationsStateToZero(phoneNumber){
+  return {type : types.SET_LOGGEDIN_USER_NOTIFICATIONS_TO_ZERO_SUCCESS,phoneNumber}
+}
+
 export function LoadLoggedInUserDataSuccess(data){
   return {type:types.LOAD_LOGGEDIN_USER_DATA_SUCCESS,data}
 }
