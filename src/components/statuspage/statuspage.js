@@ -7,6 +7,7 @@ import Footer from '../footer/footer';
 import HoverIcons from '../hoverIcons/hoverIcons';
 import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';import dp1 from '../../data/dp/dp1.jpg';
+import { Avatar } from '@material-ui/core';
 
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
@@ -23,9 +24,9 @@ const StatusPage = (props) => {
         else             props.history.push('/status');
     },[]);
 
-    let a=[1,2,3,4,5,6];
+    let a=[13,14,15,16,17,18];
 
-    let b=[1,2];
+    let b=[11,12];
 
     return (
         <div className="statusPage">
@@ -58,12 +59,13 @@ const StatusPage = (props) => {
                     <span className='log-img-block1'></span>
                     <span className='log-img-block2'></span>
                         <div className='log-img1'>
-                        <img src={dp1} style={{border:"2px solid white",borderRadius:'25px',height:'49px',width:'49px'}} alt='logleft' />
-                        
+                        {/*<img src={dp1} style={{border:"2px solid white",borderRadius:'25px',height:'49px',width:'49px'}} alt='logleft' />*/}
+                        <Avatar src={`https://avatars.dicebear.com/api/human/${value}.svg`}
+                             style={{borderRadius:'25px',height:'49px',width:'49px'}} />
                         </div>
     
                         <div className="log-text">
-                            <div className= "log-name">Interviewer</div>
+                            <div className= "log-name">Interviewer{value}</div>
                             <div className="log-details">
                                 
                             <label>Today, 10:32 am</label>
@@ -83,11 +85,13 @@ const StatusPage = (props) => {
                 <div className='calllog' key ={index}>
                     <div className='log-left'>
                         <div className='log-img2'>
-                        <img src={dp1} style={{border:"2px solid white",borderRadius:'25px',height:'49px',width:'49px'}} alt='logleft' />
+                        <Avatar src={`https://avatars.dicebear.com/api/human/${value}.svg`}
+                             style={{borderRadius:'25px',height:'49px',width:'49px'}} />
+                        {/*<img src={dp1} style={{border:"2px solid white",borderRadius:'25px',height:'49px',width:'49px'}} alt='logleft' />*/}
                         </div>
     
                         <div className="log-text">
-                            <div className= "log-name">Interviewer</div>
+                            <div className= "log-name">Interviewer{value}</div>
                             <div className="log-details">
                                 
                             <label>Yesterday, 05:25 pm</label>

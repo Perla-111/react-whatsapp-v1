@@ -14,14 +14,19 @@ import CallMadeIcon from '@material-ui/icons/CallMade';
 import CallReceivedIcon from '@material-ui/icons/CallReceived';
 //import CallMissedIcon from '@material-ui/icons/CallMissed';
 //import CallMissedOutgoingIcon from '@material-ui/icons/CallMissedOutgoing';
-import { IconButton } from '@material-ui/core';
+import { IconButton,Avatar } from '@material-ui/core';
 
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import { connect } from 'react-redux';
 
 const CallPage = (props) => {
 
+//    const [seed, setSeed] = useState('');
+
     useEffect(()=>{
+
+       // setSeed(Math.floor(Math.random()*5000));
+
         if(props.mystate.states.loggedInUserdata.length === 0){
             props.history.push('/');
         }
@@ -38,11 +43,13 @@ const CallPage = (props) => {
                 <div className='calllog' key ={index}>
                     <div className='log-left'>
                         <div className='log-img'>
-                        <img src={dp1} style={{borderRadius:'25px',height:'49px',width:'49px'}} alt='logleft' />
+                            <Avatar src={`https://avatars.dicebear.com/api/human/${value}.svg`}
+                             style={{borderRadius:'25px',height:'49px',width:'49px'}} />
+                        {/*<img src={dp1} style={{borderRadius:'25px',height:'49px',width:'49px'}} alt='logleft' />*/}
                         </div>
     
                         <div className="log-text">
-                            <div className= "log-name">Interviewer</div>
+                            <div className= "log-name">Interviewer{value}</div>
                             <div className="log-details">
                                 {value%2===0?
                                     <CallMadeIcon style={{color:'lightgreen'}}/>:

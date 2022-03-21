@@ -19,13 +19,20 @@ function CameraPage(props) {
         else             props.history.push('/cam');
     },[]);
 
+    useEffect(()=>{
+        setWidth(window.innerWidth);
+        setHeight(window.innerHeight);
+    },[window.innerHeight,window.innerWidth])
+
     const [isShowVideo, setIsShowVideo] = useState(false);
     const [buttonName, setButtonName] = useState('Start');
+    const [camWidth, setWidth] = useState(window.innerWidth);
+    const [camHeight, setHeight] = useState(window.innerHeight);
     const videoElement = useRef(null);
     
     const videoConstraints = {
-        width: 375,
-        height: 667,
+        width: camWidth,
+        height: camHeight,
         facingMode: "user"
     }
 

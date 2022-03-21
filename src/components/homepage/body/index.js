@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import restchatsData from '../../../data/sample/chatsData';
 
 import fireDb from '../../../firebase';
+import { Avatar } from '@material-ui/core';
 
 
 import { connect } from 'react-redux';
@@ -267,8 +268,10 @@ const ChatTiles = (props) => {
                     restChatData.map((RestChatData, index) =>
                         <div key={index} className="tile">
                             <div></div>
-                            <img className="dp" src={dp1} alt="nnnn" height="49px"
-                                width="49px"></img>
+                            <Avatar src={`https://avatars.dicebear.com/api/human/${RestChatData.name}.svg`}
+                             style={{borderRadius:'25px',height:'49px',width:'49px'}} />
+                        {/*<img className="dp" src={dp1} alt="nnnn" height="49px"
+                                width="49px"></img>*/}
                             <div className="content">
                                 <div className="topp">
                                     <div className="topp1">{RestChatData.name}</div>
