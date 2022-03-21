@@ -317,7 +317,8 @@ const ChatBody = (props) => {
                 props.actions.updateOppositeUserChatTrigger(idsOpposite,oppositeUserNumber,oppositeUserName,OppUserNotifications,oppositeUserLastMessage);
             })
             
-        }, 2000);
+        }, 100);
+        ///// changed time out here
     }
     }
 

@@ -44,6 +44,7 @@ export default function stateReducer(state = initialState,action){
           for(let i=0;i<state.triggeredUsers.length;i++){
             if(state.triggeredUsers[i].phoneNumber===action.phoneNumber)
             {
+             // if(notificationsToZero[i].isTriggered!=='true')
               notificationsToZero[i].notificationsCount = 0;
             }
           }

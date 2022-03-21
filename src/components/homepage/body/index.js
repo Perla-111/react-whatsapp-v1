@@ -23,6 +23,7 @@ const ChatTiles = (props) => {
     const [chatData, setChatData] = useState();
     const [oppositeUserChatData, setOppositeUserChatData] = useState();
     const [lastmessage, setlastmessage] = useState('');
+    const [lastmessageType, setlastmessageType] = useState('');
 
     const restChatData = restchatsData;
     const [toHitDb, setToHitDb] = useState('true');
@@ -31,7 +32,10 @@ const ChatTiles = (props) => {
     useEffect(() => {
 
         if (props.mystate.states.triggeredUsers && props.mystate.states.loggedInUserdata.phoneNumber) {
+            
             setlastmessage(props.mystate.states.loggedInUserdata.chats1[0].messages[props.mystate.states.loggedInUserdata.chats1[0].messages.length - 1].msg);
+            setlastmessageType(props.mystate.states.loggedInUserdata.chats1[0].messages[props.mystate.states.loggedInUserdata.chats1[0].messages.length - 1].msgType);
+
             for (let i = 0; i < props.mystate.states.triggeredUsers.length; i++) {
                 if (props.mystate.states.loggedInUserdata.phoneNumber.toString() === props.mystate.states.triggeredUsers[i].phoneNumber.toString()) {
                     //console.log(props.mystate.states.triggeredUsers[i]);
@@ -253,7 +257,19 @@ const ChatTiles = (props) => {
                                         <div className="topp2">{'today'}</div>}
                                 </div>
                                 <div className="bott">
-                                    <label className='textWrapp'>{/*chat.group*/false ? `${'chat.chatMemberName'}: ` : ''}{lastmessage}</label>
+                                    <label className='textWrapp'>
+                                        {lastmessageType==='sent'?
+                                    <span >
+                                    {
+                                    <CheckIcon style={{fontSize:'16px',/*color:'rgb(55, 185, 236)',*/
+                                    padding:'0px',margin:'0px'}} />}
+                                    {
+                                    <CheckIcon style={{fontSize:'16px',padding:'0px',
+                                    /*color:'rgb(55, 185, 236)',*/marginLeft:'-0.6rem'}} /> }
+                                    
+                                    {lastmessage}</span>
+                                    :
+                                        lastmessage}</label>
                                     <label > {/*chat.chatMuted*/true ? <VolumeOffIcon style={{ color: 'grey' }} /> : ''}
                                         &nbsp;
                                         {chat.notificationsCount > 0 ? <span className="badge badge-success rounded-circle">{chat.notificationsCount}</span> : ''}
@@ -264,6 +280,7 @@ const ChatTiles = (props) => {
                         </div>
                     )
                 }
+                                   
 
                 {restChatData &&
                     restChatData.map((RestChatData, index) =>
