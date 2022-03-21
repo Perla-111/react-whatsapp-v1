@@ -4,13 +4,11 @@ import initialState from './initialState';
 export default function stateReducer(state = initialState,action){
   switch(action.type){
     case types.LOAD_USER_SUCCESS :
-      console.log(state);
-      console.log(action.user);
       return state;
 
       case types.SET_TAB_NUMBER_SUCCESS :
         let newState = {...state,checkActive:action.number}
-        console.log(newState);
+        //console.log(newState);
         return newState;
 
       /*
@@ -49,11 +47,11 @@ export default function stateReducer(state = initialState,action){
             }
           }
           let NewNotificationsAndAllState = {...state,triggeredUsers:notificationsToZero};
-          console.log(NewNotificationsAndAllState);
+          //console.log(NewNotificationsAndAllState);
         return state
 
         case types.LOAD_LOGGEDIN_USER_NOTIFICATIONS_SUCCESS :
-        console.log(action.triggeredUsers);
+        //console.log(action.triggeredUsers);
         let notifications = action.triggeredUsers;
         let loggedInUserDataNotifications;
 
@@ -81,7 +79,7 @@ export default function stateReducer(state = initialState,action){
         return loggedInUserDataState;
 
       case types.UPDATE_USER_CHAT_SUCCESS :
-        console.log(action.data);
+        //console.log(action.data);
         let loggedInUserDataUpdateChat;
         if(action.data){
           loggedInUserDataUpdateChat = {...state,loggedInUserdata:action.data};
@@ -91,16 +89,16 @@ export default function stateReducer(state = initialState,action){
         return loggedInUserDataUpdateChat;
 
       case types.UPDATE_OPPOSITE_USER_CHAT_SUCCESS :
-        if(action.data){
-          console.log(action.data);
-        }
+        //if(action.data){
+          //console.log(action.data);
+        //}
 
         return state;
 
       case types.UPDATE_OPPOSITE_USER_CHAT_TRIGGER_SUCCESS :
-        if(action.data){
-          console.log(action.data);
-        }
+        //if(action.data){
+          //console.log(action.data);
+        //}
         return state;
 
       default :

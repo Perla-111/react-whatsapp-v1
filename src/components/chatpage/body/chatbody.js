@@ -70,13 +70,13 @@ const ChatBody = (props) => {
             settimer = setInterval(() => {                                  // start hitting db
                 console.log('started interval');
                 if (toHitDb === 'true') {   //data was changed by other chat so
-                    console.log('checking trigger db');
+                    //console.log('checking trigger db');
 
                     
                     fireDb.child("triggeredUsers").orderByChild("phoneNumber").equalTo(props.mystate.states.enteredPhoneNumber)
                     .once("child_added", function (snapshot) {
                                             snapshot.ref.update({notificationsCount : 0});
-                                            console.log(snapshot.val());
+                                            //console.log(snapshot.val());
                                             
                                         }).then(
                     
@@ -90,13 +90,13 @@ const ChatBody = (props) => {
                         var res = {
                             data : []
                         };
-                        console.log(snapshot.val());
+                        //console.log(snapshot.val());
                         if(snapshot.val()!==null){
                           for(let i=0;i<snapshot.val().length;i++){
                             if(snapshot.val()[i]!==undefined){
                               //if(snapshot.val()[i].phoneNumber.toString()===oppositeUserNumber.toString()){
                                 res.data[0] =  snapshot.val()[i];
-                                console.log(res.data);
+                                //console.log(res.data);
                               //}
                               //else console.log('id not matched')
                             }
@@ -106,8 +106,8 @@ const ChatBody = (props) => {
 
                         if (res.data.length > 0) {
                             //setToHitDb('false');
-                            console.log(res.data[0].phoneNumber.toString());
-                            console.log(props.mystate.states.loggedInUserdata.phoneNumber.toString());
+                            ///console.log(res.data[0].phoneNumber.toString());
+                            //console.log(props.mystate.states.loggedInUserdata.phoneNumber.toString());
                             if(res.data[0].phoneNumber.toString()===props.mystate.states.loggedInUserdata.phoneNumber.toString()){
                             props.actions.loadLoggedInUserData(res.data[0].phoneNumber);
                             //let path = `http://localhost:4000/triggeredUsers/${res.data[0].id}`;
@@ -128,14 +128,14 @@ const ChatBody = (props) => {
                                 notificationsCount : 0,
                                 isTriggered: 'false'
                             }
-                            console.log(toPushInFireDb);
+                            //console.log(toPushInFireDb);
                             fireDb.child("triggeredUsers").orderByChild("phoneNumber").equalTo(res.data[0].phoneNumber).once("child_added", function(snapshot) {
                              
                                 snapshot.ref.update(toPushInFireDb);
-                                console.log(snapshot.val());
+                                //console.log(snapshot.val());
                                 
                               }).then((ress='ok')=>{
-                                console.log(res.data[0].phoneNumber);
+                                //console.log(res.data[0].phoneNumber);
 
                               props.actions.loadLoggedInUserNotifications(res.data[0].phoneNumber);
                               setToHitDb('true');});
@@ -286,8 +286,8 @@ const ChatBody = (props) => {
         for(let i=0;i<props.mystate.states.triggeredUsers.length;i++){
             if(oppositeUserNumber.toString()===props.mystate.states.triggeredUsers[i].phoneNumber.toString()){
                 OppUserNotifications = props.mystate.states.triggeredUsers[i].notificationsCount;
-                console.log(props.mystate.states.triggeredUsers[i].notificationsCount);
-                console.log(oppositeUserNumber);
+                //console.log(props.mystate.states.triggeredUsers[i].notificationsCount);
+                //console.log(oppositeUserNumber);
             }
             }
         let oppositeUserLastMessage = text;

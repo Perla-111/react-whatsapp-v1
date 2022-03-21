@@ -55,7 +55,7 @@ alert('invalid email or passsword');
   }
 
   static loadLoggedInUserNotifications(triggeredUsers){
-    console.log(triggeredUsers);
+   // console.log(triggeredUsers);
     return fireDb.child("triggeredUsers")//.orderByChild("phoneNumber").equalTo(phoneNumber)
       .once("value").then(snapshot => {
         //console.log(snapshot.val());
@@ -230,7 +230,7 @@ alert('invalid email or passsword');
             if (snapshot.val()[i] !== undefined) {
               if (snapshot.val()[i].phoneNumber.toString() === oppositeUserNumber.toString()) {
                 res = { data: snapshot.val()[i] };
-                console.log(res.data);
+                //console.log(res.data);
               }
               else console.log('id not matched')
             }
@@ -262,7 +262,7 @@ alert('invalid email or passsword');
 
         fireDb.child("data").orderByChild("phoneNumber").equalTo(oppositeUserNumber).once("child_added", function (snapshot) {
           snapshot.ref.update(toPushInFireDb);
-          console.log(snapshot.val());//directly
+          //console.log(snapshot.val());//directly
 
         }).then(snapshot =>
           fireDb.child("data").orderByChild("phoneNumber").equalTo(oppositeUserNumber)
@@ -327,7 +327,7 @@ alert('invalid email or passsword');
     //let path = `http://localhost:4000/triggeredUsers/${idsOpposite}`;
     var phoneNumbertrigger = oppositeUserNumber;
     var nametrigger = oppositeUserName;
-    console.log(OppUserNotifications);
+    //console.log(OppUserNotifications);
 
     const toPushInFireDb = {
       id: idsOpposite,
@@ -340,7 +340,7 @@ alert('invalid email or passsword');
 
     return fireDb.child("triggeredUsers").orderByChild("phoneNumber").equalTo(phoneNumbertrigger).once("child_added", function (snapshot) {
       snapshot.ref.update(toPushInFireDb);
-      console.log(snapshot.val());//directly
+      //console.log(snapshot.val());//directly
     }).then(snapshot => snapshot.val());
 
 

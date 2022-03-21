@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import start2 from '../../data/dp/start2.png';
 
 const StartPage2 = (props) => {
-    console.log(props.mystate.states);
+    //console.log(props.mystate.states);
     return (
         <div className="startpage-2">
             <div className="top">

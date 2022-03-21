@@ -43,7 +43,7 @@ const ChatTiles = (props) => {
                 }
                 else {
                     setOppositeUserChatData(props.mystate.states.triggeredUsers[i]);
-                    console.log(props.mystate.states.triggeredUsers[i])
+                    //console.log(props.mystate.states.triggeredUsers[i])
                 }
             }
         }
@@ -71,7 +71,7 @@ const ChatTiles = (props) => {
             settimer = setInterval(() => {                                  // start hitting db
                 console.log('started interval');
                 if (toHitDb === 'true') {   //data was changed by other chat so
-                    console.log('checking trigger db');
+                    //console.log('checking trigger db');
 
                     //props.actions.loadLoggedInUserNotifications(props.mystate.states.enteredPhoneNumber).then(resd => {
                         fireDb.child("triggeredUsers").orderByChild("isTriggered").equalTo('true')
@@ -81,13 +81,13 @@ const ChatTiles = (props) => {
                                 var res = {
                                     data: []
                                 };
-                                console.log(snapshot.val());
+                               // console.log(snapshot.val());
                                 if (snapshot.val() !== null) {
                                     for (let i = 0; i < snapshot.val().length; i++) {
                                         if (snapshot.val()[i] !== undefined) {
                                             //if(snapshot.val()[i].phoneNumber.toString()===oppositeUserNumber.toString()){
                                             res.data[0] = snapshot.val()[i];
-                                            console.log(res.data);
+                                            //console.log(res.data);
                                             //}
                                             //else console.log('id not matched')
                                         }
@@ -97,8 +97,8 @@ const ChatTiles = (props) => {
 
                                 if (res.data.length > 0) {
                                     //setToHitDb('false');
-                                    console.log(res.data[0].phoneNumber.toString());
-                                    console.log(props.mystate.states.enteredPhoneNumber.toString());//replaced this 2 places -> props.mystate.states.loggedInUserdata.phoneNumber
+                                    //console.log(res.data[0].phoneNumber.toString());
+                                    //console.log(props.mystate.states.enteredPhoneNumber.toString());//replaced this 2 places -> props.mystate.states.loggedInUserdata.phoneNumber
                                     if (res.data[0].phoneNumber.toString() === props.mystate.states.enteredPhoneNumber.toString()) {
                                         props.actions.loadLoggedInUserData(res.data[0].phoneNumber);
                                         //let path = `http://localhost:4000/triggeredUsers/${res.data[0].id}`;
@@ -122,10 +122,10 @@ const ChatTiles = (props) => {
                                         fireDb.child("triggeredUsers").orderByChild("phoneNumber").equalTo(res.data[0].phoneNumber).once("child_added", function (snapshot) {
 
                                             snapshot.ref.update(toPushInFireDb);
-                                            console.log(snapshot.val());
+                                            //console.log(snapshot.val());
                                             
                                         }).then((ress = 'ok') =>{
-                                            console.log(res.data[0].phoneNumber);
+                                            //console.log(res.data[0].phoneNumber);
                                             props.actions.loadLoggedInUserNotifications(res.data[0].phoneNumber);
                                             setToHitDb('true');});
 
