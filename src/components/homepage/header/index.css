@@ -2,7 +2,6 @@
     background: #128C7E;
     height: 16.66vh;
     overflow-y : scroll;
-    overflow: hidden;
 
 }
 
@@ -22,8 +21,6 @@ font-weight : bold;
 
 
 .header1 .header_menu{
-    overflow-y: scroll;
-    overflow: hidden;
     /*color:white;*/
     padding : 0.5rem;
     background: #128C7E;
