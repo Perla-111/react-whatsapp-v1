@@ -21,7 +21,7 @@ const Header = (props) => {
     const [checkActive,setCheckActive] = useState();
 
     useEffect(()=>{
-        console.log(props.mystate.states.checkActive)
+        //console.log(props.mystate.states.checkActive)
         setCheckActive(props.mystate.states.checkActive);
     },[props.mystate.states.checkActive]);
 

@@ -219,7 +219,7 @@ const ChatBody = (props) => {
                     console.log('none');
                 }
             }, 3000);
-        }, 2000);
+        }, 500);
 
         // this will clear Timeout
         // when component unmount like in willComponentUnmount

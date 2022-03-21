@@ -209,7 +209,7 @@ const ChatTiles = (props) => {
                     console.log('none');
                 }
             }, 3000);
-        }, 1500);
+        }, 500);
 
         // this will clear Timeout
         // when component unmount like in willComponentUnmount
