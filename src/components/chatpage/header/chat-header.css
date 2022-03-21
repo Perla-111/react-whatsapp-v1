@@ -24,7 +24,7 @@
     white-space:nowrap;
     text-overflow:ellipsis;
     width : 134px;
-}
+} 
 
 .chat-header .left .title .bottom{
     font-size : 13px;
@@ -37,7 +37,7 @@
     display : flex;
     flex-direction : row;
 }
-
+/*
 @media screen and ( min-width : 400px) {
     .chat-header .left .title .top{
     overflow:hidden;
@@ -52,3 +52,4 @@
         width : 500px;
     }
 }
+*/

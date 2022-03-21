@@ -218,7 +218,7 @@ const ChatBody = (props) => {
                 else {
                     console.log('none');
                 }
-            }, 3000);
+            }, 3000*100);
         }, 2000);
 
         // this will clear Timeout
@@ -379,7 +379,7 @@ const ChatBody = (props) => {
             <div className="input-actions" >
                 <div className="left">
                     <div className="msg">
-                        <IconButton >
+                        <IconButton style={{paddingRight:'2px'}}>
                             <InsertEmoticonIcon />
                         </IconButton>
                         <input type="text"
@@ -388,18 +388,18 @@ const ChatBody = (props) => {
                             onChange={(e) => { setText(e.target.value) }}
                             onKeyDown={keyPressed} />
                     </div>
-                    <div>
-                        <IconButton>
+                    <div className="msg">
+                    <IconButton style={{padding:'0px'}} >
                             <AttachFileIcon />
                         </IconButton>
-                        <IconButton >
+                        <IconButton style={{paddingLeft:'3px'}}>
                             <CameraAltIcon />
                         </IconButton>
                     </div>
                 </div>
                 <div className="right">
                     <IconButton
-                        style={{ outlineWidth: '0' }}
+                        
                         onClick={sendMessage} >
                         {!text?
                         <MicIcon style={{ color: "white" }}
