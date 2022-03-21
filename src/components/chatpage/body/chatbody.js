@@ -218,7 +218,7 @@ const ChatBody = (props) => {
                 else {
                     console.log('none');
                 }
-            }, 3000);
+            }, 1500);
         }, 500);
 
         // this will clear Timeout
