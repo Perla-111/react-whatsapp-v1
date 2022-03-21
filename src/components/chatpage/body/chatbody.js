@@ -318,7 +318,7 @@ const ChatBody = (props) => {
             })
             
         }, 100);
-        ///// changed time out here
+        ///// changed time out here from 2000ms(for json-server axios) to 100ms 
     }
     }
 
