@@ -208,7 +208,7 @@ const ChatTiles = (props) => {
                 else {
                     console.log('none');
                 }
-            }, 1500);
+            }, 1000);
         }, 500);
 
         // this will clear Timeout

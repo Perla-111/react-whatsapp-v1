@@ -218,8 +218,9 @@ const ChatBody = (props) => {
                 else {
                     console.log('none');
                 }
-            }, 1500);
+            }, 1000);
         }, 500);
+        // changed from 2000 timeout 3000 interval
 
         // this will clear Timeout
         // when component unmount like in willComponentUnmount
@@ -313,9 +314,9 @@ const ChatBody = (props) => {
                 isReceived: "yes",
                 isRead: "yes",
                 id: ""
-            }, oppositeUserNumber, idsOpposite).then(res =>{
+            }, oppositeUserNumber, idsOpposite);//.then(res =>{
                 props.actions.updateOppositeUserChatTrigger(idsOpposite,oppositeUserNumber,oppositeUserName,OppUserNotifications,oppositeUserLastMessage);
-            })
+            //})
             
         }, 100);
         ///// changed time out here from 2000ms(for json-server axios) to 100ms 
