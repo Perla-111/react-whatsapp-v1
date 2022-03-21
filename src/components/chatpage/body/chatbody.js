@@ -298,7 +298,7 @@ const ChatBody = (props) => {
               //console.log(res.data);
               //console.log([snapshot.val()[i]]);
             }
-            else console.log('not found')
+            //else console.log('not found')
           }
         }
         

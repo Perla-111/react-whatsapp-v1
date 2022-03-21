@@ -40,7 +40,7 @@ alert('invalid email or passsword');
               //console.log(res.data);
               //console.log([snapshot.val()[i]]);
             }
-            else console.log('not found')
+            //else console.log('not found')
           }
         }
         return [snapshot.val()[savei]];
@@ -103,7 +103,7 @@ alert('invalid email or passsword');
               //console.log(res.data);
               //console.log(snapshot.val()[i]);
             }
-            else console.log('not found')
+            //else console.log('not found')
           }
         }
         return [snapshot.val()[savei]];
@@ -166,7 +166,7 @@ alert('invalid email or passsword');
                 //console.log(res.data);
                 //console.log([snapshot.val()[i]]);
               }
-              else console.log('not found')
+              //else console.log('not found')
             }
           }
           return snapshot.val()[savei];
@@ -233,9 +233,9 @@ alert('invalid email or passsword');
                 res = { data: snapshot.val()[i] };
                 //console.log(res.data);
               }
-              else console.log('id not matched')
+              //else console.log('id not matched')
             }
-            else console.log('not found')
+            //else console.log('not found')
           }
         }
 
@@ -286,7 +286,7 @@ alert('invalid email or passsword');
                     //console.log(res.data);
                     //console.log([snapshot.val()[i]]);
                   }
-                  else console.log('not found')
+                  //else console.log('not found')
                 }
               }
               return snapshot.val()[savei];

@@ -101,7 +101,7 @@ const ChatTiles = (props) => {
                                     //console.log(props.mystate.states.enteredPhoneNumber.toString());//replaced this 2 places -> props.mystate.states.loggedInUserdata.phoneNumber
                                     if (res.data[0].phoneNumber.toString() === props.mystate.states.enteredPhoneNumber.toString()) {
                                         props.actions.loadLoggedInUserData(res.data[0].phoneNumber);
-                                        console.log('calling nexxt notifications action');
+                                        //console.log('calling nexxt notifications action');
                                         props.actions.loadLoggedInUserNotifications(props.mystate.states.enteredPhoneNumber).then(ress=>{
                                         //let path = `http://localhost:4000/triggeredUsers/${res.data[0].id}`;
                                         /*
@@ -222,7 +222,7 @@ const ChatTiles = (props) => {
         // when component unmount like in willComponentUnmount
         // and show will not change to true
         return () => {
-            console.log('cleared timeout');
+            //console.log('cleared timeout');
             clearTimeout(timer1);
             clearInterval(settimer);
             // clearInterval(onlineTimer);
