@@ -66,9 +66,9 @@ const ChatBody = (props) => {
         //this is in state to stop trigger post db response.data
         //let count =0;//should not be in state in this demo example
         let timer1 = setTimeout(() => {
-            console.log('started timeout'); //after 2 secs of comp load
+            //console.log('started timeout'); //after 2 secs of comp load
             settimer = setInterval(() => {                                  // start hitting db
-                console.log('started interval');
+               // console.log('started interval');
                 if (toHitDb === 'true') {   //data was changed by other chat so
                     //console.log('checking trigger db');
 
@@ -100,7 +100,7 @@ const ChatBody = (props) => {
                               //}
                               //else console.log('id not matched')
                             }
-                            else console.log('not found')
+                          //  else console.log('not found')
                           }
                         }
 
@@ -157,8 +157,8 @@ const ChatBody = (props) => {
                             else 
                             setToHitDb('true');
                         }
-                        else
-                            console.log('none');
+                   //     else
+                  //          console.log('none');
                     }))
 /* for json-server with axios
                     axios.get("http://localhost:4000/triggeredUsers", {
@@ -215,10 +215,10 @@ const ChatBody = (props) => {
                         })
                         */
                 }
-                else {
-                    console.log('none');
-                }
-            }, 1000);
+           //     else {
+          //          console.log('none');
+          //      }
+            }, 2000);
         }, 500);
         // changed from 2000 timeout 3000 interval
 
@@ -226,7 +226,7 @@ const ChatBody = (props) => {
         // when component unmount like in willComponentUnmount
         // and show will not change to true
         return () => {
-            console.log('cleared timeout');
+           // console.log('cleared timeout');
             clearTimeout(timer1);
             clearInterval(settimer);
             //clearTimeout(timer2);
@@ -284,29 +284,40 @@ const ChatBody = (props) => {
         let ids = props.mystate.states.loggedInUserdata.id;
         var idsOpposite = props.mystate.states.loggedInUserdata.chats1[0].receiverId;
         let OppUserNotifications;
-        for(let i=0;i<props.mystate.states.triggeredUsers.length;i++){
+        fireDb.child("triggeredUsers").orderByChild("phoneNumber").equalTo(oppositeUserNumber)
+      .once("value").then(snapshot => {
+        //console.log(snapshot.val());
+
+        let savei;
+        
+        if (snapshot.val() !== null) {
+          for (let i = 0; i < snapshot.val().length; i++) {
+            if (snapshot.val()[i] !== undefined) {
+              //res.data[0] =  snapshot.val()[i];
+              savei = i;
+              //console.log(res.data);
+              //console.log([snapshot.val()[i]]);
+            }
+            else console.log('not found')
+          }
+        }
+        
+        //return [snapshot.val()[savei]];
+       // console.log(snapshot.val()[savei]);
+        OppUserNotifications = snapshot.val()[savei].notificationsCount;
+
+
+                /*for(let i=0;i<props.mystate.states.triggeredUsers.length;i++){
             if(oppositeUserNumber.toString()===props.mystate.states.triggeredUsers[i].phoneNumber.toString()){
                 OppUserNotifications = props.mystate.states.triggeredUsers[i].notificationsCount;
-                //console.log(props.mystate.states.triggeredUsers[i].notificationsCount);
-                //console.log(oppositeUserNumber);
+                console.log(props.mystate.states.triggeredUsers[i].notificationsCount);
+                console.log(oppositeUserNumber);
             }
-            }
-        let oppositeUserLastMessage = text;
-        props.actions.updateUserChat({
-
-            msgType: "sent",
-            timeStamp: new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit' }),
-            dateStamp:new Date().toLocaleDateString(),
-            msg: text,
-            isDelivered: "yes",
-            isReceived: "yes",
-            isRead: "yes",
-            id: ""
-        }, allData, ids)
-
-        setTimeout(() => {
-            props.actions.updateOppositeUserChat({
-                msgType: "received",
+            }*/
+            let oppositeUserLastMessage = text;
+            props.actions.updateUserChat({
+    
+                msgType: "sent",
                 timeStamp: new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit' }),
                 dateStamp:new Date().toLocaleDateString(),
                 msg: text,
@@ -314,12 +325,31 @@ const ChatBody = (props) => {
                 isReceived: "yes",
                 isRead: "yes",
                 id: ""
-            }, oppositeUserNumber, idsOpposite);//.then(res =>{
-                props.actions.updateOppositeUserChatTrigger(idsOpposite,oppositeUserNumber,oppositeUserName,OppUserNotifications,oppositeUserLastMessage);
-            //})
-            
-        }, 100);
-        ///// changed time out here from 2000ms(for json-server axios) to 100ms 
+            }, allData, ids)
+    
+            setTimeout(() => {
+                props.actions.updateOppositeUserChat({
+                    msgType: "received",
+                    timeStamp: new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit' }),
+                    dateStamp:new Date().toLocaleDateString(),
+                    msg: text,
+                    isDelivered: "yes",
+                    isReceived: "yes",
+                    isRead: "yes",
+                    id: ""
+                }, oppositeUserNumber, idsOpposite);
+                //console.log('completed opposite user chat data update');//.then(res =>{
+                    props.actions.updateOppositeUserChatTrigger(idsOpposite,oppositeUserNumber,oppositeUserName,OppUserNotifications,oppositeUserLastMessage);
+                //})
+               // console.log('completed opposite user trigger');//.then(res =>{
+    
+            }, 100);
+            ///// changed time out here from 2000ms(for json-server axios) to 100ms 
+
+        //return snapshot.val();
+      })
+        
+
     }
     }
 

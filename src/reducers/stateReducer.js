@@ -48,13 +48,13 @@ export default function stateReducer(state = initialState,action){
           }
           let NewNotificationsAndAllState = {...state,triggeredUsers:notificationsToZero};
           //console.log(NewNotificationsAndAllState);
-        return state
+        return NewNotificationsAndAllState;
 
         case types.LOAD_LOGGEDIN_USER_NOTIFICATIONS_SUCCESS :
         //console.log(action.triggeredUsers);
         let notifications = action.triggeredUsers;
         let loggedInUserDataNotifications;
-
+ 
         if(notifications){
           loggedInUserDataNotifications = {...state,triggeredUsers:action.triggeredUsers};
         }

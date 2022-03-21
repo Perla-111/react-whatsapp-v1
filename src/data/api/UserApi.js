@@ -78,6 +78,7 @@ alert('invalid email or passsword');
         }
         */
         //return [snapshot.val()[savei]];
+        //console.log(snapshot.val());
         return snapshot.val();
       })
   }
@@ -100,7 +101,7 @@ alert('invalid email or passsword');
               //res.data[0] =  snapshot.val()[i];
               savei = i;
               //console.log(res.data);
-              //console.log([snapshot.val()[i]]);
+              //console.log(snapshot.val()[i]);
             }
             else console.log('not found')
           }
@@ -263,7 +264,10 @@ alert('invalid email or passsword');
         fireDb.child("data").orderByChild("phoneNumber").equalTo(oppositeUserNumber).once("child_added", function (snapshot) {
           snapshot.ref.update(toPushInFireDb);
           //console.log(snapshot.val());//directly
-
+//////////////////////////////////////
+///////////////////////////////////////
+////////////////////// sufficient till here below is waste code as logged in user dont need opp user data , 
+//////////////////////// he/she just updates the data
         }).then(snapshot =>
           fireDb.child("data").orderByChild("phoneNumber").equalTo(oppositeUserNumber)
             .once("value").then(snapshot => {
@@ -327,7 +331,7 @@ alert('invalid email or passsword');
     //let path = `http://localhost:4000/triggeredUsers/${idsOpposite}`;
     var phoneNumbertrigger = oppositeUserNumber;
     var nametrigger = oppositeUserName;
-    //console.log(OppUserNotifications);
+   // console.log(OppUserNotifications);
 
     const toPushInFireDb = {
       id: idsOpposite,
@@ -337,6 +341,7 @@ alert('invalid email or passsword');
       lastMessage : oppositeUserLastMessage,
       notificationsCount : OppUserNotifications+1
     }
+    //console.log(toPushInFireDb.notificationsCount);
 
     return fireDb.child("triggeredUsers").orderByChild("phoneNumber").equalTo(phoneNumbertrigger).once("child_added", function (snapshot) {
       snapshot.ref.update(toPushInFireDb);

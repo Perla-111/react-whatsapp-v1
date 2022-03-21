@@ -28,12 +28,12 @@ export function LoadLoggedInUserDataSuccess(data){
 }
 
 export function UpdateUserChatSuccess(data,newChat){
-  console.log(newChat);
+  //console.log(newChat);
   return {type:types.UPDATE_USER_CHAT_SUCCESS,data}
 }
 export function UpdateOppositeUserChatSuccess(data,newChat){
-  console.log(data);
-  console.log(newChat);
+  //console.log(data);
+  //console.log(newChat);
   /*data = {
     id:data.id,
     phoneNumber:data.phoneNumber,
@@ -90,11 +90,12 @@ export function loadUser(){
   }
 
   export function loadLoggedInUserNotifications(phoneNumber){
+    let changednotifications;
     return function(dispatch) {
       return UserApi.loadLoggedInUserNotifications(phoneNumber).then(triggeredUsers=>{
+        changednotifications=triggeredUsers;
         dispatch(LoadLoggedInUserNotificationsSuccess(triggeredUsers));
-      }).catch(error=>{throw(error);})
-      .then((resd='ok1')=>resd);
+      }).catch(error=>{throw(error);});
     }
   }
 

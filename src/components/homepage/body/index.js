@@ -67,9 +67,9 @@ const ChatTiles = (props) => {
         //this is in state to stop trigger post db response.data
         //let count =0;//should not be in state in this demo example
         let timer1 = setTimeout(() => {
-            console.log('started timeout'); //after 2 secs of comp load
+            //console.log('started timeout'); //after 2 secs of comp load
             settimer = setInterval(() => {                                  // start hitting db
-                console.log('started interval');
+              //  console.log('started interval');
                 if (toHitDb === 'true') {   //data was changed by other chat so
                     //console.log('checking trigger db');
 
@@ -91,9 +91,9 @@ const ChatTiles = (props) => {
                                             //}
                                             //else console.log('id not matched')
                                         }
-                                        else console.log('not found')
+                                    //    else console.log('not found')
                                     }
-                                }
+                                } 
 
                                 if (res.data.length > 0) {
                                     //setToHitDb('false');
@@ -101,6 +101,8 @@ const ChatTiles = (props) => {
                                     //console.log(props.mystate.states.enteredPhoneNumber.toString());//replaced this 2 places -> props.mystate.states.loggedInUserdata.phoneNumber
                                     if (res.data[0].phoneNumber.toString() === props.mystate.states.enteredPhoneNumber.toString()) {
                                         props.actions.loadLoggedInUserData(res.data[0].phoneNumber);
+                                        console.log('calling nexxt notifications action');
+                                        props.actions.loadLoggedInUserNotifications(props.mystate.states.enteredPhoneNumber).then(ress=>{
                                         //let path = `http://localhost:4000/triggeredUsers/${res.data[0].id}`;
                                         /*
                                            let res1 = {data : snapshot.val()}
@@ -111,6 +113,8 @@ const ChatTiles = (props) => {
                                             isTriggered: 'false'
                                         }
                                     */
+                                        //console.log('coming');
+                                        //console.log(res.data[0].notificationsCount);
                                         const toPushInFireDb = {
                                             id: res.data[0].id,
                                             phoneNumber: res.data[0].phoneNumber,
@@ -119,15 +123,18 @@ const ChatTiles = (props) => {
                                         notificationsCount: res.data[0].notificationsCount,
                                             isTriggered: 'false'
                                         }
+                                        //console.log(toPushInFireDb.notificationsCount);
                                         fireDb.child("triggeredUsers").orderByChild("phoneNumber").equalTo(res.data[0].phoneNumber).once("child_added", function (snapshot) {
 
                                             snapshot.ref.update(toPushInFireDb);
                                             //console.log(snapshot.val());
                                             
                                         }).then((ress = 'ok') =>{
+                                           // console.log('coming deep');
                                             //console.log(res.data[0].phoneNumber);
-                                            props.actions.loadLoggedInUserNotifications(res.data[0].phoneNumber);
+                                            //props.actions.loadLoggedInUserNotifications(res.data[0].phoneNumber);
                                             setToHitDb('true');});
+                                        })
 
                                         /*
                                       axios.put(path,
@@ -143,11 +150,11 @@ const ChatTiles = (props) => {
                                       })
                                       */
                                     }
-                                    else
-                                        setToHitDb('true');
+                             //       else
+                            //            setToHitDb('true');
                                 }
-                                else
-                                    console.log('none');
+                           //     else
+                           //         console.log('none');
                             })
                     //})
                     /* for json-server with axios
@@ -205,10 +212,10 @@ const ChatTiles = (props) => {
                                             })
                                             */
                 }
-                else {
-                    console.log('none');
-                }
-            }, 1000);
+            //    else {
+           //         console.log('none');
+           //     }
+            }, 2000);
         }, 500);
 
         // this will clear Timeout
